@@ -6,27 +6,30 @@ namespace P2_2_Tip_Calculator_App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+        [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.fifteen = 0;
+            ViewBag.twenty = 0;
+            ViewBag.twentyFive = 0;
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Index(TipCalculatorModel model)
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                ViewBag.fifteen = model.CalculateFifteenPercent();
+                ViewBag.twenty = model.CalculateTwentyPercent();
+                ViewBag.twentyFive = model.CalculateTwentyFivePercent();
+            }
+            else
+            {
+                ViewBag.fifteen = 0;
+                ViewBag.twenty = 0;
+                ViewBag.twentyFive = 0;
+            }
+            return View(model); // bind model to view
         }
     }
 }
