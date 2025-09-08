@@ -2,25 +2,48 @@
 @{
     Layout = "_Layout";
 }
-        <h1 style="color:blue;">Price Quotation</h1>
-		<form asp-action="Index" method="post">
-        <div asp-validation-summary="All"></div>
-        <div class="row">
-              <label asp-for="Subtotal">Subtotal:</label>
-              <input asp-for="Subtotal" />
+
+<header class="bg-primary text-white text-center p-3 mb-4">
+    <h1>
+        <i class="fas fa-money-bill-wave"></i> Price Quotation
+    </h1>
+</header>
+
+<form asp-action="Index" method="post" class="container">
+    <div class="row mb-3">
+        <label asp-for="Subtotal" class="col-sm-2 col-form-label">Subtotal:</label>
+        <div class="col-sm-4">
+            <input asp-for="Subtotal" class="form-control" />
         </div>
-        <div class="row">
-            <label asp-for="DiscountPercent">Discount percent:</label>
-            <input asp-for="DiscountPercent" />
+        <div class="col-sm-6">
+            <span asp-validation-for="Subtotal" class="text-danger"></span>
         </div>
-        <div class="row">
-            <label>Discount amount:</label>
-            <label>@ViewBag.DiscountAmount.ToString("C")</label>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="DiscountPercent" class="col-sm-2 col-form-label">Discount percent:</label>
+        <div class="col-sm-4">
+            <input asp-for="DiscountPercent" class="form-control" />
         </div>
-        <div class="row">
-            <label>Total:</label>
-            <label>@ViewBag.Total.ToString("C")</label>
+        <div class="col-sm-6">
+            <span asp-validation-for="DiscountPercent" class="text-danger"></span>
         </div>
-        <button type="submit">Calculate</button>
-        <a asp-action="Index">Clear</a>
-        </form>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Discount amount:</label>
+        <div class="col-sm-10">
+            <span class="form-control-plaintext">@ViewBag.DiscountAmount.ToString("C")</span>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <label class="col-sm-2 col-form-label">Total:</label>
+        <div class="col-sm-10">
+            <span class="form-control-plaintext">@ViewBag.Total.ToString("C")</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <a asp-action="Index" class="btn btn-primary">Clear</a>
+        </div>
+    </div>
+</form>
