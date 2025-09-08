@@ -1,0 +1,25 @@
+﻿@model PriceQuotationModel
+@{
+    Layout = "_Layout";
+}
+        <h1 style="color:blue;">Price Quotation</h1>
+		<form asp-action="Index" method="post">
+        <div class="row">
+              <label asp-for="Subtotal">Subtotal:</label>
+              <input asp-for="Subtotal" />
+        </div>
+        <div class="row">
+            <label asp-for="DiscountPercent">Discount percent:</label>
+            <input asp-for="DiscountPercent" />
+        </div>
+        <div class="row">
+            <label>Discount amount:</label>
+            <label>@ViewBag.DiscountAmount.ToString("C")</label>
+        </div>
+        <div class="row">
+            <label>Total:</label>
+            <label>@ViewBag.Total.ToString("C")</label>
+        </div>
+        <button type="submit">Calculate</button>
+        <a asp-action="Index">Clear</a>
+        </form>
