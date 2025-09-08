@@ -1,8 +1,15 @@
-﻿namespace P2_1_Price_Quotation_App.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace P2_1_Price_Quotation_App.Models
 {
     public class PriceQuotationModel
     {
+        [Required(ErrorMessage = "Please enter a subtotal.")]
+        [Range(0.0000001, double.MaxValue, ErrorMessage = "Please enter a value greater than 0.")]
         public decimal Subtotal { get; set; }
+
+        [Required(ErrorMessage = "Please enter a discount percent.")]
+        [Range(1, 100, ErrorMessage = "Please enter percent between 1 and 100.")]
         public decimal DiscountPercent { get; set; }
 
         public decimal CalculateTotal()

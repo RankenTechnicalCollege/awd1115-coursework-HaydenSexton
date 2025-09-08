@@ -4,6 +4,7 @@
 }
         <h1 style="color:blue;">Price Quotation</h1>
 		<form asp-action="Index" method="post">
+        <div asp-validation-summary="All"></div>
         <div class="row">
               <label asp-for="Subtotal">Subtotal:</label>
               <input asp-for="Subtotal" />

@@ -16,8 +16,15 @@ namespace P2_1_Price_Quotation_App.Controllers
 
         public IActionResult Index(PriceQuotationModel model)
         {
-            ViewBag.DiscountAmount = model.CalculateDiscountAmount();
-            ViewBag.Total = model.CalculateTotal();
+            if (ModelState.IsValid)
+            {
+                ViewBag.DiscountAmount = model.CalculateDiscountAmount();
+                ViewBag.Total = model.CalculateTotal();
+            } else
+            {
+                ViewBag.DiscountAmount = 0;
+                ViewBag.Total = 0;
+            }
             return View(model); // bind model to view
         }
     }
