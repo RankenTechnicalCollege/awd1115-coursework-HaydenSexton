@@ -1,0 +1,3 @@
+Destiny 2 Clan Management System
+
+A website themed around the game Destiny 2 where you'll be able to "join" clans and interact with clan functions like claiming quests and such. Clan admins will be able to manage member rosters, their roles, promote or demote based off their own rank, and schedule events. Each clan member will have their stats displayed, what loadout their using, and any quests they may have completed. Users will be able to view event schedules, clan details, and other profiles.
