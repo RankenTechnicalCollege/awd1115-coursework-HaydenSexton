@@ -1,0 +1,28 @@
+﻿@model DistanceConverterModel
+@{
+    Layout = "_Layout";
+}
+<h1 class="text-primary mb-4 text-center">Distance Converter</h1>
+
+<form asp-action="Index" method="post" class="container">
+    <div asp-validation-summary="All" class="text-danger mb-3 text-center"></div>
+
+    <div class="mb-3 text-center">
+        <label asp-for="DistanceInInches" class="form-label">Distance in inches</label>
+        <input asp-for="DistanceInInches" class="form-control text-center mx-auto" style="max-width: 300px;" />
+    </div>
+
+    <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary w-50">Convert to cm</button>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <div class="alert alert-info text-center">
+                @ViewBag.inches inches is @ViewBag.centimeters centimeters
+            </div>
+        </div>
+    </div>
+</form>
+
+
