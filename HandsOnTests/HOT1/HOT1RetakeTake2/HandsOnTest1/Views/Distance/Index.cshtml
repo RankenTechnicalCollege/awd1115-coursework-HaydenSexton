@@ -1,0 +1,24 @@
+﻿@model HandsOnTest1.Models.DistanceConverterModel;
+@{
+	ViewBag.Title = "Distance Converter Page";
+}
+
+
+<h1 class="text-primary mb-4 text-center">Distance Converter</h1>
+
+<form asp-action="Index" method="post" class="container" style="max-width: 400px;">
+    <div asp-validation-summary="All" class="text-danger mb-3 text-center"></div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="DistanceInInches" class="form-control text-center" id="DistanceInInches" placeholder="Distance in inches">
+        <label asp-for="DistanceInInches">Distance in inches</label>
+    </div>
+
+    <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-primary">Convert to cm</button>
+    </div>
+
+        <div class="alert alert-info text-center">
+            @ViewBag.inches inches is @ViewBag.centimeters centimeters
+        </div>
+</form>

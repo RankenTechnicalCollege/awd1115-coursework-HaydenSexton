@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DistanceConverter.Models
+namespace HandsOnTest1.Models
 {
     public class DistanceConverterModel
     {
         [Required(ErrorMessage = "Please enter a number for inches.")]
-        [Range(0.0000001, double.MaxValue, ErrorMessage = "Please enter a value greater than 0.")]
+        [Range(1, 500, ErrorMessage = "Please enter a value between 1 and 500.")]
+
         public decimal? DistanceInInches { get; set; }
         public decimal? Centimeters { get; set; }
 
