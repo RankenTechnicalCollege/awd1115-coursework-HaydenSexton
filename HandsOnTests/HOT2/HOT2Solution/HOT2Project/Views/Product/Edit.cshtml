@@ -1,0 +1,67 @@
+﻿@model Product
+@{
+	ViewBag.Title = $"{ViewBag.Action}";
+}
+<h2>@ViewBag.Action</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="ProductName" class="form-label">Name</label>
+        <input asp-for="ProductName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductDescShort" class="form-label">Short Description</label>
+        <input asp-for="ProductDescShort" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductDescLong" class="form-label">Long Description</label>
+        <textarea asp-for="ProductDescLong" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Current Image</label>
+        @if (!string.IsNullOrEmpty(Model.ProductImage))
+        {
+            <div class="mb-2">
+                <img src="@Url.Content("~/images/" + Model.ProductImage)"
+                     alt="@Model.ProductName"
+                     class="img-thumbnail" style="max-width: 150px;" />
+            </div>
+        }
+
+        <label class="form-label">Change Image</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ProductImage" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductPrice" class="form-label">Price</label>
+        <input asp-for="ProductPrice" class="form-control" type="number" step="0.01" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductQty" class="form-label">Quantity</label>
+        <input asp-for="ProductQty" class="form-control" type="number" min="0" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="CategoryId" class="form-select">
+            <option value="B">Books</option>
+            <option value="C">Clothing</option>
+            <option value="E">Electronics</option>
+            <option value="F">Furniture</option>
+            <option value="H">Home Appliances</option>
+            <option value="S">Sports</option>
+            <option value="T">Toys</option>
+        </select>
+    </div>
+
+    <input type="hidden" asp-for="ProductId" />
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

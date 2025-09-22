@@ -1,0 +1,52 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+<div class="mb-2">
+    <a asp-controller="Product" asp-action="Add" class="btn btn-outline-primary">Add Product</a>
+</div>
+
+<table class="table table-striped table-hover table-bordered text-center align-middle shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">Long Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td class="fw-bold">@product.ProductName</td>
+                <td>@product.ProductDescShort</td>
+                <td class="text-truncate" style="max-width: 200px;">@product.ProductDescLong</td>
+                <td>
+                    <img src="@product.ProductImage" alt="@product.ProductName"
+                         class="img-thumbnail" style="max-width: 80px;" />
+                </td>
+                <td class="text-success fw-semibold">$@product.ProductPrice</td>
+                <td>@product.ProductQty</td>
+                <td>@product.Category.Name</td>
+                <td>
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.ProductId" asp-route-slug="@product.Slug"
+                       class="btn btn-sm btn-primary me-1">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.ProductId" asp-route-slug="@product.Slug"
+                       class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

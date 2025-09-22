@@ -1,0 +1,31 @@
+﻿@model Product
+@{
+	ViewBag.Title = "Delete Product";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-3 text-danger">Confirm Deletion</h2>
+                    <h4 class="mb-4">@Model.ProductName</h4>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="ProductId" />
+
+                        <div class="d-flex justify-content-center gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary btn-lg">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
