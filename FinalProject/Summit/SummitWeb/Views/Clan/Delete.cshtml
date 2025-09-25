@@ -1,0 +1,11 @@
+﻿@model SummitWeb.Models.Clan
+@{
+	ViewBag.Title = $"Delete {Model.Name}";
+}
+
+<h1>Are you sure you want to delete @Model.Name ?</h1>
+<form asp-action="Delete" method="post">
+	<input type="hidden" asp-for="ClanId" />
+	<input type="submit" value="Delete" class="btn btn-danger" />
+	<a asp-controller="Clan" asp-action="List" class="btn btn-primary">Cancel</a>
+</form>
