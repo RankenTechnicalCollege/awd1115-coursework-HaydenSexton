@@ -1,6 +1,7 @@
-﻿@model SummitWeb.Models.Clan
+﻿@model Clan
 @{
 	ViewBag.Title = $"Delete {Model.Name}";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Are you sure you want to delete @Model.Name ?</h1>
@@ -9,3 +10,9 @@
 	<input type="submit" value="Delete" class="btn btn-danger" />
 	<a asp-controller="Clan" asp-action="List" class="btn btn-primary">Cancel</a>
 </form>
+
+@section Scripts {
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

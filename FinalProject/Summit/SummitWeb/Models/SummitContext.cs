@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SummitWeb.Areas.Clan.Models;
 
 namespace SummitWeb.Models
 {

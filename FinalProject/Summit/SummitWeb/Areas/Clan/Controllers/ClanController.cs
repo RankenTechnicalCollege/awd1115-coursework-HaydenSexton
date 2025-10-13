@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SummitWeb.Models;
+using ClanModel = SummitWeb.Areas.Clan.Models.Clan;
 
-namespace SummitWeb.Controllers
+namespace SummitWeb.Areas.Clan.Controllers
 {
+    [Area("Clan")]
     public class ClanController : Controller
     {
         private readonly SummitContext _context;
@@ -27,11 +29,11 @@ namespace SummitWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(Clan clan)
+        public async Task<IActionResult> Delete(ClanModel clan)
         {
             _context.Clans.Remove(clan);
             await _context.SaveChangesAsync();
-            return RedirectToAction("List");
+            return RedirectToAction("List", "Clan", new { area = "Clan" }); // list = action, clan = controller, area = "clan" = area name.
         }
 
         [HttpGet]
@@ -41,7 +43,7 @@ namespace SummitWeb.Controllers
             if (id == 0)
             {
                 ViewBag.Operation = "Add";
-                return View(new Clan());
+                return View(new ClanModel());
             }
             ViewBag.Operation = "Edit";
             var clan = await _context.Clans.FindAsync(id);
@@ -49,14 +51,14 @@ namespace SummitWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEdit(Clan clan)
+        public async Task<IActionResult> AddEdit(ClanModel clan)
         {
             ViewBag.Operation = clan.ClanId == 0 ? "Add" : "Edit";
 
             if (ModelState.IsValid)
             {
                 // add operation
-                if (clan.ClanId == 0) 
+                if (clan.ClanId == 0)
                 {
                     clan.CreatedDate = DateTime.UtcNow; // modify later
                     _context.Add(clan);
@@ -68,7 +70,7 @@ namespace SummitWeb.Controllers
                 }
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction("List");
+                return RedirectToAction("List", "Clan", new { area = "Clan" }); // list = action, clan = controller, area = "clan" = area name.
             }
 
             return View(clan);

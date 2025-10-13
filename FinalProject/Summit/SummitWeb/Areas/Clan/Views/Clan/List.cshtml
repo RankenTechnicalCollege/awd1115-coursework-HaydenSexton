@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Clan>
 @{
 	ViewBag.Title = "Clan List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container py-4 bg-dark text-light min-vh-100">
     <h1 class="mb-4 text-center">Destiny 2 Clans</h1>
 
     <div class="d-flex justify-content-end mb-3">
-        <a asp-action="AddEdit" class="btn btn-success">
+        <a asp-area="Clan" asp-controller="Clan" asp-action="AddEdit" class="btn btn-success">
             <i class="bi bi-plus-circle me-1"></i> Add New Clan
         </a>
     </div>
@@ -41,8 +42,8 @@
 
                                 <div class="d-flex gap-2">
                                     <a class="btn btn-sm btn-outline-light" href="#">View</a>
-                                    <a asp-action="AddEdit" asp-route-id="@clan.ClanId" asp-route-slug="@clan.Slug" class="btn btn-sm btn-outline-info">Edit</a>
-                                    <a asp-action="Delete" asp-route-id="@clan.ClanId" asp-route-slug="@clan.Slug" class="btn btn-sm btn-outline-danger">Delete</a>
+                                    <a asp-area="Clan" asp-controller="Clan" asp-action="AddEdit" asp-route-id="@clan.ClanId" asp-route-slug="@clan.Slug" class="btn btn-sm btn-outline-info">Edit</a>
+                                    <a asp-area="Clan" asp-controller="Clan" asp-action="Delete" asp-route-id="@clan.ClanId" asp-route-slug="@clan.Slug" class="btn btn-sm btn-outline-danger">Delete</a>
                                 </div>
                             </div>
                         </div>

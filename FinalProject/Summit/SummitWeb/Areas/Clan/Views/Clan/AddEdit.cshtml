@@ -1,7 +1,8 @@
-﻿@model Clan
+﻿@model Clan;
 
 @{
 	ViewBag.Title = $"{ViewBag.Operation} Clan";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Operation Clan</h2>
@@ -24,3 +25,11 @@
 	<button class="btn btn-primary" type="submit">Save</button>
 
 </form>
+
+
+
+@section Scripts {
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

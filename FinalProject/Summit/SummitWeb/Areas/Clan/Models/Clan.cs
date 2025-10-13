@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SummitWeb.Models
+namespace SummitWeb.Areas.Clan.Models
 {
     public class Clan
     {
