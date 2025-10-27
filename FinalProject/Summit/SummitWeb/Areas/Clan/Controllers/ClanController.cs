@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SummitWeb.Areas.Clan.Models;
 using SummitWeb.Models;
+using System.Numerics;
+using System.Security.Claims;
+using SummitWeb.Areas.Clan.Data.Services;
 using ClanModel = SummitWeb.Areas.Clan.Models.Clan;
+using SummitContext = SummitWeb.Models.SummitContext;
 
 namespace SummitWeb.Areas.Clan.Controllers
 {
@@ -9,17 +14,38 @@ namespace SummitWeb.Areas.Clan.Controllers
     public class ClanController : Controller
     {
         private readonly SummitContext _context;
-        public ClanController(SummitContext context)
+        private readonly IClansService _clansService;
+        // add more services here when created
+
+        // service constructor
+        public ClanController(SummitContext context, IClansService clansService)
         {
+            _clansService = clansService;
             _context = context;
         }
 
-
-        public async Task<IActionResult> List()
+        // new paginated list method
+        public async Task<IActionResult> List(int? pageNumber, string searchString)
         {
-            var clans = await _context.Clans.ToListAsync();
-            return View(clans);
+            var SummitContext = _clansService.GetAll();
+            int pageSize = 9;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                SummitContext = SummitContext.Where(a => a.Name.Contains(searchString));
+                return View(await PaginatedList<ClanModel>.CreateAsync(SummitContext, pageNumber ?? 1, pageSize));
+            }
+
+            return View(await PaginatedList<ClanModel>.CreateAsync(SummitContext, pageNumber ?? 1, pageSize));
         }
+
+        // paginated list method to be implemented later for own created clans
+/*        public async Task<IActionResult> MyClans(int? pageNumber)
+        {
+            var SummitContext = _clansService.GetAll();
+            int pageSize = 3;
+
+            return View("Index", await PaginatedList<ClanModel>.CreateAsync(SummitContext.Where(l => l.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).AsNoTracking(), pageNumber ?? 1, pageSize));
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)

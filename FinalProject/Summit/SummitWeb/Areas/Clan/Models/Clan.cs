@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SummitWeb.Areas.Clan.Models
 {
@@ -12,6 +15,16 @@ namespace SummitWeb.Areas.Clan.Models
         [Required(ErrorMessage = "Clan description is required.")]
         public string? Description { get; set; }
         public DateTime CreatedDate { get; set; }
+
+
+/*        [Required]
+        public string? IdentityUserId { get; set; }
+        [ForeignKey("IdentityUserId")]
+        public IdentityUser? User { get; set; }          */
+
+
+
+
 
 
         // slug

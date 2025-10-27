@@ -1,4 +1,4 @@
-﻿@model Clan;
+﻿@model Clan
 
 @{
 	ViewBag.Title = $"{ViewBag.Operation} Clan";
@@ -6,6 +6,9 @@
 }
 
 <h2>@ViewBag.Operation Clan</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
 <form asp-action="AddEdit" method="post">
 
 	<input type="hidden" asp-for="ClanId" />

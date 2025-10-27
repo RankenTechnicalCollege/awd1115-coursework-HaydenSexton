@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using SummitWeb.Areas.Clan.Data.Services;
+using SummitWeb.Areas.Clan.Models;
 using SummitWeb.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,9 @@ builder.Services.AddRouting(options =>
     options.LowercaseUrls = true;
     options.AppendTrailingSlash= true;
 });
+
+// add IService scopes
+builder.Services.AddScoped<IClansService, ClansService>();
 
 var app = builder.Build();
 
