@@ -30,6 +30,8 @@ namespace TripLogProject.Models
                     StartDate = new DateTime(2023, 6, 6),
                     EndDate = new DateTime(2023, 6, 14),
                     Accommodations = "Holiday Inn Express",
+                    Phone = "504-575-1254",
+                    Email = "test@test.com",
                     ThingsToDo = "Visit family"
                 }
             );
