@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HOT4.Models.Appointment>
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="mb-0">Appointments</h2>
+        <div class="btn-group">
+            <a asp-controller="Customers" asp-action="Create" class="btn btn-outline-primary">+ New Customer</a>
+            <a asp-controller="Appointments" asp-action="Create" class="btn btn-primary">+ New Appointment</a>
+        </div>
+    </div>
+
+    <form method="get" class="mb-3">
+        <div class="row g-2">
+            <div class="col-auto">
+                <select name="customerId" asp-items="ViewBag.CustomerList" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Customers</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No appointments found. Try <a asp-controller="Appointments" asp-action="Create" class="alert-link">adding one</a>.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Start Date/Time</th>
+                    <th>End Date/Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>@a.Customer?.Username</td>
+                        <td>@a.StartDateTime.ToString("MM/dd/yyyy hh:mm tt")</td>
+                        <td>@a.EndDateTime.ToString("MM/dd/yyyy hh:mm tt")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

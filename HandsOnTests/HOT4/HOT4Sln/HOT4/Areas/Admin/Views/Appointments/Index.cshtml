@@ -1,0 +1,42 @@
+﻿@model IEnumerable<HOT4.Models.Appointment>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Manage Appointments";
+}
+
+<div class="container py-4">
+    <h2 class="mb-3 text-center">Appointment Management</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No appointments scheduled.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>@a.Customer?.Username</td>
+                        <td>@a.StartDateTime.ToString("MM/dd/yyyy hh:mm tt")</td>
+                        <td>@a.EndDateTime.ToString("MM/dd/yyyy hh:mm tt")</td>
+                        <td class="text-center">
+                            <a asp-area="Admin" asp-action="Details" asp-route-id="@a.AppointmentId" class="btn btn-sm btn-info">Details</a>
+                            <a asp-area="Admin" asp-action="Edit" asp-route-id="@a.AppointmentId" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-area="Admin" asp-action="Delete" asp-route-id="@a.AppointmentId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

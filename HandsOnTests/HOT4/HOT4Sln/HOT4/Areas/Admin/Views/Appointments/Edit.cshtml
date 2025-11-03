@@ -1,0 +1,31 @@
+﻿@model HOT4.Models.Appointment
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edit Appointment";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">Edit Appointment</h2>
+
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <input type="hidden" asp-for="AppointmentId" />
+
+        <div class="mb-3">
+            <label asp-for="StartDateTime" class="form-label"></label>
+            <input asp-for="StartDateTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="StartDateTime" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CustomerId" class="form-label"></label>
+            <select asp-for="CustomerId" asp-items="ViewBag.Customers" class="form-select"></select>
+            <span asp-validation-for="CustomerId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+    </form>
+</div>
+
+
