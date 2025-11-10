@@ -40,20 +40,50 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]!.ToString() == "Home"
+                                                       && ViewContext.RouteData.Values["Action"]!.ToString() == "Index"
+                                                       ? "active" : "")"
+                               asp-area=""
+                               asp-controller="Home" asp-action="Index">
+                                Home
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Clan" asp-controller="Clan" asp-action="List">Clans</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Area"]?.ToString() == "Clan"
+                                                       && ViewContext.RouteData.Values["Controller"]!.ToString() == "Clan"
+                                                       ? "active" : "")"
+                               asp-area="Clan"
+                               asp-controller="Clan" asp-action="List">
+                                Clans
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Event" asp-action="Index">Events</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]!.ToString() == "Event"
+                                                       ? "active" : "")"
+                               asp-controller="Event" asp-action="Index">
+                                Events
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Profile" asp-action="Index">Profiles</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]!.ToString() == "Profile"
+                                                       ? "active" : "")"
+                               asp-controller="Profile" asp-action="Index">
+                                Profiles
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]!.ToString() == "Account"
+                                                       && ViewContext.RouteData.Values["Action"]!.ToString() == "Login"
+                                                       ? "active" : "")"
+                               asp-controller="Account" asp-action="Login">
+                                Login
+                            </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
