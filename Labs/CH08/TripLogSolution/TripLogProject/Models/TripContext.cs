@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using TripLogProject.Models.DomainModels;
 
 namespace TripLogProject.Models
 {

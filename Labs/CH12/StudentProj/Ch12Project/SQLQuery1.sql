@@ -1,0 +1,1 @@
+﻿DBCC CHECKIDENT ('Trips', RESEED, 0);

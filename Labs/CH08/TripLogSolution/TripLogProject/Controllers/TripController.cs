@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TripLogProject.Models;
+using TripLogProject.Models.DomainModels;
 using TripLogProject.ViewModels;
 
 namespace TripLogProject.Controllers
