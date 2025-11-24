@@ -32,7 +32,6 @@ namespace SummitWeb.Areas.Clan.Controllers
             if (!string.IsNullOrEmpty(searchString))
             {
                 SummitContext = SummitContext.Where(a => a.Name.Contains(searchString));
-                return View(await PaginatedList<ClanModel>.CreateAsync(SummitContext, pageNumber ?? 1, pageSize));
             }
 
             return View(await PaginatedList<ClanModel>.CreateAsync(SummitContext, pageNumber ?? 1, pageSize));

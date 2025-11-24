@@ -18,18 +18,17 @@ namespace SummitV2.Controllers
             clans = new Repository<Clan>(context);
         }
 
-        public async Task<IActionResult> Index(string searchString, int pageNumber = 1)
+        public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
-            int pageSize = 6;
-
             var query = context.Clans.AsQueryable();
+            int pageSize = 6;
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 query = query.Where(c => c.Name.Contains(searchString));
             }
 
-            var pagedClans = await PaginatedList<Clan>.CreateAsync(query, pageNumber, pageSize);
+            var pagedClans = await PaginatedList<Clan>.CreateAsync(query, pageNumber ?? 1, pageSize);
 
             ViewData["searchString"] = searchString;
 
