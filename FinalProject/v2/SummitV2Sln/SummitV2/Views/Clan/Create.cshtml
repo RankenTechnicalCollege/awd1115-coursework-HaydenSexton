@@ -1,0 +1,46 @@
+﻿@model Clan
+
+@{
+    ViewData["Title"] = "Create Clan";
+}
+
+<div class="container mt-4 text-light">
+
+    <h2 class="mb-4 fw-bold text-info">Create New Clan</h2>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <input type="hidden" asp-for="CreatedByUserId" />
+        <input type="hidden" asp-for="CreatedDate" />
+
+        <div class="card bg-black border-info shadow">
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label text-info fw-semibold"></label>
+                    <input asp-for="Name" class="form-control bg-dark text-light border-info" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label text-info fw-semibold"></label>
+                    <textarea asp-for="Description"
+                              class="form-control bg-dark text-light border-info"
+                              rows="4"
+                              required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-info fw-bold text-dark px-4">Create Clan</button>
+
+                <a asp-action="Index"
+                   class="btn btn-outline-info text-info ms-2 px-4">
+                    Cancel
+                </a>
+
+            </div>
+        </div>
+    </form>
+
+</div>

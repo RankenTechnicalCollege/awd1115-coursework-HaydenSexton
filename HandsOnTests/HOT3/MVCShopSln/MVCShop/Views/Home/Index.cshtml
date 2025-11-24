@@ -1,0 +1,30 @@
+﻿@model List<MVCShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">All Products</h2>
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <img src="~/images/@product.ImageFileName" class="card-img-top" alt="@product.Name">
+
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Price.ToString("c")</p>
+
+                        <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug" class="btn btn-primary">
+                            View
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

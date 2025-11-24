@@ -1,0 +1,65 @@
+﻿@model Clan
+
+@{
+    ViewData["Title"] = "Edit Clan";
+}
+
+<div class="container mt-4 text-light">
+
+    <h2 class="mb-4 fw-bold text-info">Edit Clan</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="ClanId" />
+        <input type="hidden" asp-for="CreatedByUserId" />
+        <input type="hidden" asp-for="CreatedDate" />
+
+        <div class="card shadow-lg bg-black border-secondary">
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold text-info"></label>
+                    <input asp-for="Name" class="form-control bg-dark text-light border-secondary" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold text-info"></label>
+                    <textarea asp-for="Description"
+                              class="form-control bg-dark text-light border-secondary"
+                              rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CreatedDate" class="form-label fw-bold text-info"></label>
+                    <input asp-for="CreatedDate"
+                           class="form-control bg-dark text-light border-secondary"
+                           readonly />
+                </div>
+
+                <!-- future admin controls -->
+                @*
+                <div class="mb-3">
+                    <label class="form-label">Clan Owner</label>
+                    <input type="text" value="@Model.ApplicationUser?.UserName" class="form-control" readonly />
+                </div>
+                *@
+
+                <button type="submit" class="btn btn-info fw-bold px-4">Save Changes</button>
+
+                <a asp-action="Details" asp-route-id="@Model.ClanId"
+                   class="btn btn-outline-light ms-2 fw-bold px-4">
+                    Cancel
+                </a>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

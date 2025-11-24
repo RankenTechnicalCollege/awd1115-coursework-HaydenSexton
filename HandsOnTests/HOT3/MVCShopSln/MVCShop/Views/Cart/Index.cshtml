@@ -1,0 +1,57 @@
+﻿@model MVCShop.Models.CartViewModel
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container mt-4">
+    <h2>Your Cart</h2>
+
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+
+    @if (!Model.Items.Any())
+    {
+        <p>Your cart is empty.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.Price.ToString("c")</td>
+                        <td>@(item.Product.Price* item.Quantity).ToString("c")</td>
+                        <td>
+                            <a asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.ProductId" class="btn btn-danger btn-sm">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h4>Total Quantity: @Model.TotalQuantity</h4>
+        <h4>Total Price: @Model.TotalPrice.ToString("c")</h4>
+
+        <a asp-controller="Purchase" asp-action="Checkout" class="btn btn-primary mt-3">
+            Proceed to Checkout
+        </a>
+    }
+</div>

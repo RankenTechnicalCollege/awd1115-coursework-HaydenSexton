@@ -1,0 +1,22 @@
+﻿@model MVCShop.Models.Product
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/images/@Model.ImageFileName" class="img-fluid rounded">
+        </div>
+
+        <div class="col-md-6">
+            <h2>@Model.Name</h2>
+            <p class="text-muted">Category: @Model.Category.Name</p>
+
+            <h4 class="text-success">@Model.Price.ToString("c")</h4>
+
+            <p class="mt-3">@Model.Description</p>
+
+            <a asp-controller="Cart" asp-action="Add" asp-route-productId="@Model.ProductId" class="btn btn-success">
+                Add to Cart
+            </a>
+        </div>
+    </div>
+</div>

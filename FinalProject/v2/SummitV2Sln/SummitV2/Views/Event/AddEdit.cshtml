@@ -1,0 +1,93 @@
+﻿@model Event
+
+@{
+    bool isEdit = Model.EventId != 0;
+    ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
+
+    var clan = ViewBag.Clan as Clan;
+}
+
+<div class="container mt-4 text-light">
+
+    <h2 class="mb-4 fw-bold text-info text-uppercase" style="letter-spacing:2px;">
+        @ViewData["Title"]
+    </h2>
+
+    <div class="alert alert-dark border-info text-info shadow-sm mb-4 bg-black">
+        <strong>Clan:</strong> <span class="text-light">@clan?.Name</span>
+        <span class="text-muted">(@clan?.Description)</span>
+    </div>
+
+    <form action="/Event/AddEdit" method="post">
+
+        @if (isEdit)
+        {
+            <input type="hidden"
+                   id="EventId"
+                   name="EventId"
+                   value="@Model.EventId" />
+        }
+
+        <input type="hidden" id="OrganizerId" name="OrganizerId" value="@Model.OrganizerId" />
+
+        <input type="hidden" id="ClanId" name="ClanId" value="@Model.ClanId" />
+
+        <div class="card bg-secondary border-info shadow-lg">
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label for="Title" class="form-label text-info fw-bold">Title</label>
+                    <input type="text"
+                           id="Title"
+                           name="Title"
+                           class="form-control bg-dark text-light border-info shadow-sm"
+                           required
+                           value="@Model.Title" />
+
+                    <span class="text-danger">
+                        @Html.ValidationMessage("Title")
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Description" class="form-label text-info fw-bold">Description</label>
+                    <textarea id="Description"
+                              name="Description"
+                              rows="4"
+                              class="form-control bg-dark text-light border-info shadow-sm"
+                              required>@Model.Description</textarea>
+
+                    <span class="text-danger">
+                        @Html.ValidationMessage("Description")
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="EventDate" class="form-label text-info fw-bold">Event Date</label>
+
+                    <input type="datetime-local"
+                           id="EventDate"
+                           name="EventDate"
+                           class="form-control bg-dark text-light border-info shadow-sm"
+                           required
+                           value="@(Model.EventDate != default ? Model.EventDate.ToString("yyyy-MM-ddTHH:mm") : "")" />
+
+                    <span class="text-danger">
+                        @Html.ValidationMessage("EventDate")
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
+                    @(isEdit ? "Save Changes" : "Create Event")
+                </button>
+
+                <a href="/Clan/Details/@Model.ClanId"
+                   class="btn btn-outline-light ms-2 shadow-sm">
+                    Cancel
+                </a>
+
+            </div>
+        </div>
+
+    </form>
+</div>

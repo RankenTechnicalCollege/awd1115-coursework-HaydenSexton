@@ -1,0 +1,182 @@
+﻿@model Clan
+
+@{
+    ViewData["Title"] = $"{Model.Name} – Clan Details";
+}
+
+<div class="container mt-4 text-light">
+
+    <div class="card shadow-lg mb-4 bg-black border-secondary">
+        <div class="card-body">
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">@TempData["Message"]</div>
+            }
+
+            <h1 class="display-5 fw-bold text-info">@Model.Name</h1>
+
+            <p class="text-light mb-1">
+                Created on: <span class="text-info">@Model.CreatedDate.ToShortDateString()</span>
+            </p>
+
+            <p class="text-light mb-3">
+                Created by: <span class="text-warning">@Model.ApplicationUser?.UserName</span>
+            </p>
+
+            <p class="fs-5 mt-3">@Model.Description</p>
+
+            <!-- join and leave clan buttons -->
+            @* 
+            <div class="mt-3">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (UserIsMember)  // replace with real check later
+                    {
+                        <form asp-controller="Clan" asp-action="Leave" method="post">
+                            <input type="hidden" name="clanId" value="@Model.ClanId" />
+                            <button class="btn btn-danger">Leave Clan</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-controller="Clan" asp-action="Join" method="post">
+                            <input type="hidden" name="clanId" value="@Model.ClanId" />
+                            <button class="btn btn-success">Join Clan</button>
+                        </form>
+                    }
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-success">
+                        Log in to Join
+                    </a>
+                }
+            </div>
+            *@
+
+            <!-- admin actions -->
+            @*
+            @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.ApplicationUser?.UserName)
+            {
+                <div class="mt-3">
+                    <a asp-controller="Clan" asp-action="Edit" asp-route-id="@Model.ClanId" class="btn btn-warning">Edit Clan</a>
+                    <form asp-controller="Clan" asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@Model.ClanId" />
+                        <button class="btn btn-danger">Delete Clan</button>
+                    </form>
+                    <a asp-controller="Event" asp-action="Create" asp-route-clanId="@Model.ClanId" class="btn btn-primary">Create Event</a>
+                </div>
+            }
+            *@
+
+        </div>
+    </div>
+
+    <div class="card shadow-lg mb-4 bg-black border-primary">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 fw-bold">Clan Events</h4>
+
+            <!-- admin add event button in the future -->
+            @*
+            @if (User.Identity.IsAuthenticated && UserIsMember)
+            {
+                <a asp-controller="Event" asp-action="Create" asp-route-clanId="@Model.ClanId" 
+                   class="btn btn-light btn-sm">Add Event</a>
+            }
+            *@
+
+            <a asp-controller="Event"
+               asp-action="AddEdit"
+               asp-route-clanId="@Model.ClanId"
+               class="btn btn-light btn-sm fw-bold text-dark">
+                + Create Event
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            @if (Model.Events == null || !Model.Events.Any())
+            {
+                <p class="text-light">There are no events for this clan yet.</p>
+            }
+            else
+            {
+                <ul class="list-group bg-transparent">
+                    @foreach (var e in Model.Events.OrderBy(e => e.EventDate))
+                    {
+                        <li class="list-group-item bg-dark text-light border-secondary d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1 text-info">@e.Title</h5>
+                                <p class="mb-0 text-muted">
+                                    @e.EventDate.ToString("MMMM dd, yyyy")
+                                </p>
+                            </div>
+
+                            <a asp-controller="Event"
+                               asp-action="Details"
+                               asp-route-id="@e.EventId"
+                               class="btn btn-outline-info btn-sm fw-bold">
+                                View
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+
+        </div>
+    </div>
+
+    @*
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Clan Posts</h4>
+
+            <!-- add post button-->
+            
+            @if (User.Identity.IsAuthenticated && UserIsMember)
+            {
+                <a asp-controller="Post" asp-action="Create" asp-route-clanId="@Model.ClanId" 
+                   class="btn btn-light btn-sm">New Post</a>
+            }
+            
+        </div>
+        <div class="card-body">
+            <p class="text-muted">
+                Posts are not implemented yet — this section is reserved for future features such as clan announcements, discussion threads, updates, etc.
+            </p>
+        </div>
+    </div>
+    *@
+
+    <!-- member list in the future -->
+    @*
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Clan Members</h4>
+        </div>
+        <div class="card-body">
+            @if (Model.UserClans == null || !Model.UserClans.Any())
+            {
+                <p class="text-muted">No members yet.</p>
+            }
+            else
+            {
+                <ul class="list-group">
+                    @foreach (var uc in Model.UserClans)
+                    {
+                        <li class="list-group-item">
+                            @uc.ApplicationUser?.UserName (@uc.Role)
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+    *@
+
+    <a asp-controller="Clan" asp-action="Index" class="btn btn-outline-info mt-3 fw-bold px-4">
+        Back to Clan List
+    </a>
+
+</div>
