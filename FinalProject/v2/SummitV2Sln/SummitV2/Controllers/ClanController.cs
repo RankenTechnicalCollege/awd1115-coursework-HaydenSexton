@@ -39,7 +39,8 @@ namespace SummitV2.Controllers
         public async Task<IActionResult> Details(int id)
         {
             return View(await clans.GetByIdAsync(id,
-                new QueryOptions<Clan>() { Includes = "Events,UserClans.ApplicationUser" }));
+                new QueryOptions<Clan>() { Includes = "Events,ApplicationUser,UserClans.ApplicationUser" }));
+
         }
 
         [HttpGet]
