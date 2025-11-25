@@ -2,7 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section HeadContent {
+    <!--custom css-->
+    <link rel="stylesheet" href="~/css/index-only.css" />
+}
+
+<div class="position-relative overflow-hidden" style="height:100vh;">
+    <video class="bg-video w-100 h-100 position-absolute top-0 start-0" autoplay muted loop playsinline>
+        <source src="@Url.Content("~/assets/mp4/bg.mp4")" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="masthead-overlay d-flex align-items-center">
+        <div class="container px-4 px-lg-0 text-white">
+            <h1 class="fst-italic lh-1 mb-4 display-1 fw-bold position-relative">
+                <span class="text-primary">Summit</span>
+                <span class="position-absolute top-0 start-0 text-dark" style="z-index:-1; filter: blur(1px);">Summit</span>
+            </h1>
+            <p class="lead mb-5">
+                <span class="text-primary">A Destiny 2 clan platform enabling players to join communities and organize or participate in in-game events.</span>
+                <span class="position-absolute top-0 start-0 text-dark" style="z-index:-1; filter: blur(1px);>A Destiny 2 clan platform enabling players to join communities and organize or participate in in-game events.</span>"
+            </p>
+        </div>
+    </div>
 </div>

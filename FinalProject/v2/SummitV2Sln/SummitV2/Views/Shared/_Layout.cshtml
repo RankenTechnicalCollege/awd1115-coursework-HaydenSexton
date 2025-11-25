@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Summit</title>
+
+    <!--original imports-->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SummitV2.styles.css" asp-append-version="true" />
+
+    @RenderSection("HeadContent", required: false)
 </head>
 <body class="bg-dark text-light">
 
@@ -41,7 +45,7 @@
 
     <footer class="border-top border-info footer text-muted bg-black text-center py-3 mt-4">
         <div class="container text-light">
-            &copy; 2025 - Summit - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-info">Privacy</a>
+            &copy; 2025 - Summit - <a asp-area="" asp-controller="Home" asp-action="Credits" class="text-info">Credits</a>
         </div>
     </footer>
 

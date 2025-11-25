@@ -21,7 +21,7 @@ namespace SummitV2.Controllers
         public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
             var query = context.Clans.AsQueryable();
-            int pageSize = 6;
+            int pageSize = 9;
 
             if (!string.IsNullOrEmpty(searchString))
             {
