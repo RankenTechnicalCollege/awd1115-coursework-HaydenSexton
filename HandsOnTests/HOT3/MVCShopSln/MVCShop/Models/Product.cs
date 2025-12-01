@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCShop.Models
@@ -14,6 +15,7 @@ namespace MVCShop.Models
 
         // fk
         public int CategoryId { get; set; }
+        [ValidateNever]
         public Category Category { get; set; } = null!;
 
         public string Slug { get; set; } = string.Empty;
