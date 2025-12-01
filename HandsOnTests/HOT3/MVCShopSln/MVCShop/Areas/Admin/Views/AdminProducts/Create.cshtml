@@ -9,6 +9,7 @@
     <h2>Add New Product</h2>
 
     <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
         <div class="mb-3">
             <label class="form-label">Name</label>
