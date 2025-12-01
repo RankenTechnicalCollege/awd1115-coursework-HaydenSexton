@@ -13,13 +13,35 @@ namespace MVCShop.Areas.Home.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? categoryId)
         {
+            ViewBag.Categories = _context.Categories.ToList();
+
             var products = _context.Products
                 .Include(p => p.Category)
-                .ToList();
+                .AsQueryable();
 
-            return View(products);
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                products = products.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            return View(products.ToList());
+        }
+
+        public IActionResult Details(string slug)
+        {
+            if (slug == null)
+                return NotFound();
+
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Slug == slug);
+
+            if (product == null)
+                return NotFound();
+
+            return View(product);
         }
     }
 }
