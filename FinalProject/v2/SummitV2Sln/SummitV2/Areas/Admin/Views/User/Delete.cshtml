@@ -1,0 +1,30 @@
+﻿@using SummitV2.Models
+@model ApplicationUser
+@{
+    ViewBag.Title = $"Delete {Model.UserName}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 text-light">
+
+    <h1 class="mb-4 fw-bold text-danger">
+        Are you sure you want to delete @Model.UserName ?
+    </h1>
+
+    <form asp-action="DeleteConf" method="post" class="card bg-black border-danger shadow p-4">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <input type="submit" value="Delete" class="btn btn-danger fw-bold px-4" />
+            <a asp-action="Index" class="btn btn-outline-info text-info ms-2 px-4">Back to List</a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace SummitV2.Controllers
 {
+    [Authorize]
     public class ClanController : Controller
     {
         private Repository<Clan> clans;

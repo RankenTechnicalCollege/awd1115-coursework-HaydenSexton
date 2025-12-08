@@ -1,0 +1,165 @@
+﻿@using SummitV2
+@using SummitV2.Models
+@using SummitV2.Models.ViewModels
+@model UserViewModel;
+
+@{
+    ViewBag.Title = "User Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="py-4 bg-dark text-light min-vh-100">
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
+    <h1 class="mb-4 text-center fw-bold text-info text-uppercase" style="letter-spacing:3px;">
+        Manage Users
+    </h1>
+
+    <div class="d-flex justify-content-center mb-4">
+        <form asp-area="Admin" asp-controller="User" asp-action="Index" method="get" class="d-flex">
+            <input type="text"
+                   name="searchString"
+                   class="form-control bg-black text-light border-info rounded-start-pill shadow-sm"
+                   placeholder="Search Users..."
+                   style="max-width: 240px;" />
+            <button type="submit"
+                    class="btn btn-outline-info rounded-end-pill ms-1 px-3 shadow-sm">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a asp-area="Identity" asp-page="/Account/Register"
+           class="btn btn-info text-dark fw-bold shadow-sm px-4">
+            <i class="bi bi-plus-circle me-1"></i> Add a User
+        </a>
+    </div>
+
+    @if (Model == null)
+    {
+        <div class="alert alert-info bg-secondary border-0 text-light text-center shadow-sm">
+            No users found.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive shadow-lg">
+            <table class="table table-dark table-striped table-hover align-middle border-info border-opacity-50">
+                <thead class="table-info text-dark fw-bold">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ApplicationUser user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+
+                            <td>
+                                @if (user.RoleNames != null && user.RoleNames.Any())
+                                {
+                                    @foreach (string roleName in user.RoleNames)
+                                    {
+                                        <span class="badge bg-info text-dark me-1 mb-1 d-inline-block">@roleName</span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No roles</span>
+                                }
+                            </td>
+
+                            <td class="text-center">
+                                <div class="btn-group mb-2" role="group">
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id"
+                                       class="btn btn-sm btn-warning shadow-sm">Edit</a>
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@user.Id"
+                                       class="btn btn-sm btn-danger shadow-sm">Delete</a>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-center mt-2 gap-1">
+                                    @foreach (var role in Model.Roles)
+                                    {
+                                        if (!user.RoleNames.Contains(role.Name))
+                                        {
+                                            <form method="post" asp-action="AddToRole" asp-route-userId="@user.Id" asp-route-roleName="@role.Name" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-primary">Add @role.Name</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form method="post" asp-action="RemoveFromRole" asp-route-userId="@user.Id" asp-route-roleName="@role.Name" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-secondary">Remove @role.Name</button>
+                                            </form>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <h4 class="mb-4 text-center fw-bold text-info text-uppercase" style="letter-spacing:3px;">
+        Manage Roles
+    </h4>
+
+    <form method="post" asp-action="CreateRole">
+        <div class="row mb-5 mt-3 align-items-end">
+            <div class="col-sm-3">
+                <label for="rolename" class="form-label fw-bold">Role Name</label>
+                <input type="text" class="form-control" id="rolename" name="rolename" placeholder="Role Name" />
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary mt-2">Create Role</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+
+    <!-- page controls for later-->
+    @* @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <div class="d-flex justify-content-center mt-5">
+        <a asp-area="Admin"
+           asp-controller="User"
+           asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           class="btn btn-outline-light @prevDisabled">
+            Previous
+        </a>
+
+        <div class="btn text-light mx-3" style="cursor: default;">
+            Page @Model.PageIndex of @Model.TotalPages
+        </div>
+
+        <a asp-area="Admin"
+           asp-controller="User"
+           asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           class="btn btn-outline-light @nextDisabled">
+            Next
+        </a>
+    </div> *@
+
+</div>

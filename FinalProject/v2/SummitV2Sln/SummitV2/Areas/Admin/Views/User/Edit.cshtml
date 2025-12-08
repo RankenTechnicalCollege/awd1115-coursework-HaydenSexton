@@ -1,0 +1,54 @@
+﻿@using SummitV2.Models
+@model ApplicationUser
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="container mt-4 text-light">
+
+    <h2 class="mb-4 fw-bold text-info">Edit User</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="card shadow-lg bg-black border-secondary">
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label fw-bold text-info"></label>
+                    <input asp-for="UserName" class="form-control bg-dark text-light border-secondary" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-bold text-info"></label>
+                    <input asp-for="Email" type="email" class="form-control bg-dark text-light border-secondary" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Optional future admin controls -->
+                @* 
+                <div class="mb-3">
+                    <label class="form-label">Roles</label>
+                    <input type="text" value="@Model.Roles" class="form-control" readonly />
+                </div>
+                *@
+
+                <button type="submit" class="btn btn-info fw-bold px-4">Save Changes</button>
+                <a asp-action="Details" asp-route-id="@Model.Id"
+                   class="btn btn-outline-light ms-2 fw-bold px-4">
+                    Cancel
+                </a>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

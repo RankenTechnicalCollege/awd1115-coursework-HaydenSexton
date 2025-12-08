@@ -9,17 +9,25 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultUI()
+.AddDefaultTokenProviders();
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // 30 min timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
+
 
 var app = builder.Build();
 
@@ -43,9 +51,22 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await IdentityConfig.CreateAdminUserAsync(scope.ServiceProvider);
+}
+
+app.UseSession();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.Run();

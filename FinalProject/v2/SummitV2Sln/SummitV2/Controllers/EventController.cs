@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace SummitV2.Controllers
 {
+    [Authorize(Roles ="Admin, Moderator")]
     public class EventController : Controller
     {
         private Repository<Event> events;
