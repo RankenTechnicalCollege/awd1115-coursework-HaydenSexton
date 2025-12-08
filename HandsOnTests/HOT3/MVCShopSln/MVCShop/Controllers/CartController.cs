@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVCShop.Models;
 
 namespace MVCShop.Controllers
@@ -48,6 +49,7 @@ namespace MVCShop.Controllers
             return View(vm);
         }
 
+        [Authorize]
         public IActionResult Add(int productId)
         {
             var product = _context.Products.Find(productId);

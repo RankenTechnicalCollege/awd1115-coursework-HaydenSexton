@@ -1,18 +1,29 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCShop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<ShopContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("MVCShopCS")));
 
+
 builder.Services.AddSession();
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddEntityFrameworkStores<ShopContext>()
+.AddRoles<IdentityRole>()
+.AddDefaultUI()
+.AddDefaultTokenProviders();
+
+
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews()
     .AddSessionStateTempDataProvider();
+
 
 builder.Services.Configure<RouteOptions>(options =>
 {
@@ -34,13 +45,26 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
 
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    await IdentityConfig.CreateAdminUserAsync(scope.ServiceProvider);
+}
+
 app.MapControllerRoute(
     name: "areas",
-    pattern: "{area:exists}/{controller}/{action}/{slug?}/{id?}"
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}/{slug?}"
 );
 
 app.MapControllerRoute(
@@ -52,5 +76,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 
 app.Run();

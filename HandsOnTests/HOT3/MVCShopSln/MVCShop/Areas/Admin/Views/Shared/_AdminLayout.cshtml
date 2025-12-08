@@ -43,6 +43,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link @(currentAction == "User" ? "active" : "")"
+                            asp-area="Admin" asp-controller="User" asp-action="Index">
+                        Users</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 Back to Store
                             </a>
