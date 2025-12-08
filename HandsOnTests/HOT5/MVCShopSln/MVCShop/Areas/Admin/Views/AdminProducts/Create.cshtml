@@ -1,0 +1,47 @@
+﻿@model MVCShop.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Add New Product</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <input asp-for="ImageUpload" class="form-control" type="file" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name"))">
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+    </form>
+</div>
