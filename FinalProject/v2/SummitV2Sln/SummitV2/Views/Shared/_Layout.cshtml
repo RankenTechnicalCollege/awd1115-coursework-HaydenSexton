@@ -30,13 +30,19 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="Event" asp-action="Index">All Events</a>
+                                <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="Event" asp-action="Index">Manage Events</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-info fw-semibold" asp-area="Admin" asp-controller="User" asp-action="Index">Manage Users</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Clan Owner"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="" asp-action="" asp-route-id="">My Clan</a> @*Create route to own user clan*@
                             </li>
                         }
                     </ul>

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SummitV2.Models;
 using SummitV2.Data;
+using SummitV2.Models;
+using SummitV2.Models.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddSingleton<BungieService>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {

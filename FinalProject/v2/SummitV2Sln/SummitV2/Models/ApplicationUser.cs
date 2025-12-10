@@ -5,6 +5,10 @@ namespace SummitV2.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        // external api id
+        public string? BungieId { get; set; }
+
+        // Collections
         public ICollection<Clan>? Clans { get; set; }
         public ICollection<UserClan>? UserClans { get; set; }
         public ICollection<Event>? Events { get; set; }
