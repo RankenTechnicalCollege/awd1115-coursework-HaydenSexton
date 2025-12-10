@@ -6,24 +6,27 @@ namespace SummitV2.Models
     {
         public static async Task CreateAdminUserAsync(IServiceProvider provider)
         {
+            // GUIDE IF YOU NEED TO MAKE YOUR OWN USER ADMIN
+            // 1. LOGIN WITH BUNGIE INTO THE APP
+            // 2. REPLACE userId WITH YOUR USERID IN THE DB
+            // 3. RERUN APP AND LOGOUT AND LOG BACK IN
+
             var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            string username = "admin@tequilas.com";
-            string password = "Sesame123!";
+            string userId = "userid you want to give admin here"; // (step 2) 
             string roleName = "Admin";
 
-            // role doesnt exist, create it
             if (await roleManager.FindByNameAsync(roleName) == null)
             {
                 await roleManager.CreateAsync(new IdentityRole(roleName));
             }
 
-            if (await userManager.FindByNameAsync(username) == null)
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user != null)
             {
-                ApplicationUser user = new ApplicationUser { UserName = username, Email = "admin@tequilas.com", EmailConfirmed = true };
-                var result = await userManager.CreateAsync(user, password);
-                if (result.Succeeded)
+                if (!await userManager.IsInRoleAsync(user, roleName))
                 {
                     await userManager.AddToRoleAsync(user, roleName);
                 }
