@@ -6,7 +6,6 @@ using System.Security.Claims;
 
 namespace SummitV2.Controllers
 {
-    [Authorize(Roles ="Admin, Moderator")]
     public class EventController : Controller
     {
         private Repository<Event> events;
@@ -25,7 +24,7 @@ namespace SummitV2.Controllers
             return View(await events.GetAllAsync());
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
             var options = new QueryOptions<Event>
             {
@@ -42,9 +41,9 @@ namespace SummitV2.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> AddEdit(int clanId, int id = 0)
+        public async Task<IActionResult> AddEdit(string clanId, string id = "0")
         {
-            if (id == 0)
+            if (id == "0")
             {
                 var clan = await clans.GetByIdAsync(clanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
 
@@ -56,7 +55,7 @@ namespace SummitV2.Controllers
 
                 var ev = new Event
                 {
-                    ClanId = clanId,
+                    ClanId = clanId.ToString(),
                     OrganizerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                     EventDate = DateTime.UtcNow.AddDays(1)
                 };
@@ -88,7 +87,7 @@ namespace SummitV2.Controllers
                 return View(ev);
             }
 
-            if (ev.EventId == 0)
+            if (ev.EventId == "0")
             {
                 await events.AddAsync(ev);
                 TempData["Message"] = $"Event \"{ev.Title}\" was created.";
@@ -103,15 +102,15 @@ namespace SummitV2.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        [Authorize(Roles = "Admin, ClanOwner")]
+        public async Task<IActionResult> Delete(string id)
         {
             var ev = await events.GetByIdAsync(id, new QueryOptions<Event>());
 
             if (ev == null)
                 return NotFound();
 
-            await events.DeleteAsync(id);
+            await events.DeleteAsync(id.ToString());
 
             TempData["Message"] = $"Event \"{ev.Title}\" was deleted.";
 

@@ -12,8 +12,8 @@ using SummitV2.Data;
 namespace SummitV2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251124020836_addEvents")]
-    partial class addEvents
+    [Migration("20251211000624_fixBoolApplicationUser")]
+    partial class fixBoolApplicationUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,8 @@ namespace SummitV2.Migrations
 
             modelBuilder.Entity("Clan", b =>
                 {
-                    b.Property<int>("ClanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClanId"));
+                    b.Property<string>("ClanId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -57,81 +54,81 @@ namespace SummitV2.Migrations
                     b.HasData(
                         new
                         {
-                            ClanId = 1,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 7, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9461),
+                            ClanId = "1",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 8, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7241),
                             Description = "Veteran Guardians specializing in endgame PVE content.",
                             Name = "Astral Vanguard"
                         },
                         new
                         {
-                            ClanId = 2,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 8, 18, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9465),
+                            ClanId = "2",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 4, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7250),
                             Description = "Competitive PVP players who love Trials and Iron Banner.",
                             Name = "Iron Wolves"
                         },
                         new
                         {
-                            ClanId = 3,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 8, 26, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9466),
+                            ClanId = "3",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7252),
                             Description = "Late-night Guardians focusing on Gambit, Dungeons, and seasonal grinds.",
                             Name = "Shadow Syndicate"
                         },
                         new
                         {
-                            ClanId = 4,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 8, 31, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9467),
+                            ClanId = "4",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7253),
                             Description = "New player–friendly clan helping Guardians level up and learn the game.",
                             Name = "Lightbearer Legion"
                         },
                         new
                         {
-                            ClanId = 5,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 15, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9468),
+                            ClanId = "5",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 2, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7254),
                             Description = "Sherpas assisting Guardians with raids, triumphs, and exotic missions.",
                             Name = "The Last City Watch"
                         },
                         new
                         {
-                            ClanId = 6,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 20, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9469),
+                            ClanId = "6",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 7, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7255),
                             Description = "High-end raiding group completing flawless and master raids.",
                             Name = "Vanguard Elite"
                         },
                         new
                         {
-                            ClanId = 7,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9470),
+                            ClanId = "7",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7256),
                             Description = "Chaotic Gambit lovers who thrive in the fog of war.",
                             Name = "The Drifter’s Crew"
                         },
                         new
                         {
-                            ClanId = 8,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 10, 13, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9471),
+                            ClanId = "8",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 30, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7257),
                             Description = "Solo-focused players that team up for Nightfalls and seasonal missions.",
                             Name = "Eclipse Wardens"
                         },
                         new
                         {
-                            ClanId = 9,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 10, 25, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9472),
+                            ClanId = "9",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 11, 11, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7258),
                             Description = "Relaxed PVE clan that does raids, dungeons, and chill runs.",
                             Name = "Nova Outriders"
                         },
                         new
                         {
-                            ClanId = 10,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 11, 9, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9473),
+                            ClanId = "10",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 11, 26, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7259),
                             Description = "Lore-obsessed Guardians diving deep into every mystery of the Traveler.",
                             Name = "The Infinite Chorus"
                         });
@@ -189,7 +186,88 @@ namespace SummitV2.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("SummitV2.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -197,14 +275,12 @@ namespace SummitV2.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BungieId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(21)
-                        .HasColumnType("nvarchar(21)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -246,6 +322,12 @@ namespace SummitV2.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<bool?>("isClanOwner")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("joinedClanId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -257,107 +339,16 @@ namespace SummitV2.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("SummitV2.Models.Event", b =>
                 {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
-
-                    b.Property<int>("ClanId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClanId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -385,137 +376,137 @@ namespace SummitV2.Migrations
                     b.HasData(
                         new
                         {
-                            EventId = 1,
-                            ClanId = 1,
+                            EventId = "1",
+                            ClanId = "1",
                             Description = "Full raid run with optional red border farming.",
-                            EventDate = new DateTime(2025, 11, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9786),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7356),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Deep Stone Crypt Raid"
                         },
                         new
                         {
-                            EventId = 2,
-                            ClanId = 1,
+                            EventId = "2",
+                            ClanId = "1",
                             Description = "Grandmaster Nightfall — anti-champion mods required.",
-                            EventDate = new DateTime(2025, 11, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9789),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7358),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "GM Nightfall: The Corrupted"
                         },
                         new
                         {
-                            EventId = 3,
-                            ClanId = 2,
+                            EventId = "3",
+                            ClanId = "2",
                             Description = "Casual PvP night. Stack in fireteams for faster matches.",
-                            EventDate = new DateTime(2025, 11, 26, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9790),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7359),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Iron Banner Clash Night"
                         },
                         new
                         {
-                            EventId = 4,
-                            ClanId = 3,
+                            EventId = "4",
+                            ClanId = "3",
                             Description = "3-hour Gambit session. No rage quitting.",
-                            EventDate = new DateTime(2025, 11, 28, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9792),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 15, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7360),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Gambit Prime Marathon"
                         },
                         new
                         {
-                            EventId = 5,
-                            ClanId = 3,
+                            EventId = "5",
+                            ClanId = "3",
                             Description = "Armor roll farming and Xenophage help.",
-                            EventDate = new DateTime(2025, 12, 3, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9793),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7361),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Dungeon Farm: Pit of Heresy"
                         },
                         new
                         {
-                            EventId = 6,
-                            ClanId = 4,
+                            EventId = "6",
+                            ClanId = "4",
                             Description = "Helping new Guardians unlock subclasses and find gear.",
-                            EventDate = new DateTime(2025, 11, 25, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9794),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7362),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "New Light Onboarding Night"
                         },
                         new
                         {
-                            EventId = 7,
-                            ClanId = 5,
+                            EventId = "7",
+                            ClanId = "5",
                             Description = "Challenge rotation and loot optimization.",
-                            EventDate = new DateTime(2025, 11, 29, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9795),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 16, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7363),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "King’s Fall Challenge Mode"
                         },
                         new
                         {
-                            EventId = 8,
-                            ClanId = 6,
+                            EventId = "8",
+                            ClanId = "6",
                             Description = "Master difficulty raid clearing with coordinated builds.",
-                            EventDate = new DateTime(2025, 12, 4, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9796),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 21, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7364),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Root of Nightmares Master Mode"
                         },
                         new
                         {
-                            EventId = 9,
-                            ClanId = 7,
+                            EventId = "9",
+                            ClanId = "7",
                             Description = "Complete seasonal Gambit challenges for resets.",
-                            EventDate = new DateTime(2025, 12, 1, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9797),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 18, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7365),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Gambit Reset Run"
                         },
                         new
                         {
-                            EventId = 10,
-                            ClanId = 8,
+                            EventId = "10",
+                            ClanId = "8",
                             Description = "Power grind via Nightfall rotation runs.",
-                            EventDate = new DateTime(2025, 11, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9798),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7368),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Weekly Nightfall Marathon"
                         },
                         new
                         {
-                            EventId = 11,
-                            ClanId = 9,
+                            EventId = "11",
+                            ClanId = "9",
                             Description = "Engram farming and seasonal vendor focusing.",
-                            EventDate = new DateTime(2025, 12, 3, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9799),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7370),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Activity Grind"
                         },
                         new
                         {
-                            EventId = 12,
-                            ClanId = 10,
+                            EventId = "12",
+                            ClanId = "10",
                             Description = "Deep-dive into Witness influence and the Collapse.",
-                            EventDate = new DateTime(2025, 11, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9800),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7371),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Lore Discussion Night"
                         },
                         new
                         {
-                            EventId = 13,
-                            ClanId = 2,
+                            EventId = "13",
+                            ClanId = "2",
                             Description = "Warm-up scrims and loadout tuning for Trials weekend.",
-                            EventDate = new DateTime(2025, 12, 5, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9801),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 22, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7372),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Trials Warmup"
                         },
                         new
                         {
-                            EventId = 14,
-                            ClanId = 4,
+                            EventId = "14",
+                            ClanId = "4",
                             Description = "Teaching new players how to build subclasses efficiently.",
-                            EventDate = new DateTime(2025, 12, 8, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9802),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 25, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7373),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Subclass Build Workshop"
                         },
                         new
                         {
-                            EventId = 15,
-                            ClanId = 8,
+                            EventId = "15",
+                            ClanId = "8",
                             Description = "Chill playlist grinding for vendor rewards.",
-                            EventDate = new DateTime(2025, 12, 6, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9803),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 23, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7374),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Vanguard Ops Playlist Night"
                         });
                 });
@@ -525,8 +516,8 @@ namespace SummitV2.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ClanId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClanId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");
@@ -547,8 +538,8 @@ namespace SummitV2.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -559,13 +550,6 @@ namespace SummitV2.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("UserEvents");
-                });
-
-            modelBuilder.Entity("SummitV2.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.ApplicationUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Clan", b =>
@@ -588,25 +572,25 @@ namespace SummitV2.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.ApplicationUser", null)
+                    b.HasOne("SummitV2.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.ApplicationUser", null)
+                    b.HasOne("SummitV2.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
@@ -614,16 +598,16 @@ namespace SummitV2.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.ApplicationUser", null)
+                    b.HasOne("SummitV2.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.ApplicationUser", null)
+                    b.HasOne("SummitV2.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -635,7 +619,7 @@ namespace SummitV2.Migrations
                     b.HasOne("Clan", "Clan")
                         .WithMany("Events")
                         .HasForeignKey("ClanId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SummitV2.Models.ApplicationUser", "ApplicationUser")
@@ -694,11 +678,6 @@ namespace SummitV2.Migrations
                     b.Navigation("UserClans");
                 });
 
-            modelBuilder.Entity("SummitV2.Models.Event", b =>
-                {
-                    b.Navigation("UserEvents");
-                });
-
             modelBuilder.Entity("SummitV2.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Clans");
@@ -707,6 +686,11 @@ namespace SummitV2.Migrations
 
                     b.Navigation("UserClans");
 
+                    b.Navigation("UserEvents");
+                });
+
+            modelBuilder.Entity("SummitV2.Models.Event", b =>
+                {
                     b.Navigation("UserEvents");
                 });
 #pragma warning restore 612, 618

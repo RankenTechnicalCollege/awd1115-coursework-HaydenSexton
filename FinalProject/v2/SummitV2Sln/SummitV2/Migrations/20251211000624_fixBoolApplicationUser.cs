@@ -6,388 +6,382 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SummitV2.Migrations
 {
     /// <inheritdoc />
-    public partial class EnableCascadeDelete : Migration
+    public partial class fixBoolApplicationUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Events_Clans_ClanId",
-                table: "Events");
+            migrationBuilder.AlterColumn<bool>(
+                name: "isClanOwner",
+                table: "AspNetUsers",
+                type: "bit",
+                nullable: true,
+                oldClrType: typeof(bool),
+                oldType: "bit");
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 1,
+                keyValue: "1",
                 column: "CreatedDate",
-                value: new DateTime(2025, 7, 27, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4709));
+                value: new DateTime(2025, 8, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7241));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 2,
+                keyValue: "10",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 18, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4716));
+                value: new DateTime(2025, 11, 26, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7259));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 3,
+                keyValue: "2",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 26, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4717));
+                value: new DateTime(2025, 9, 4, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7250));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 4,
+                keyValue: "3",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 31, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4718));
+                value: new DateTime(2025, 9, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7252));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 5,
+                keyValue: "4",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 15, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4719));
+                value: new DateTime(2025, 9, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7253));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 6,
+                keyValue: "5",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 20, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4720));
+                value: new DateTime(2025, 10, 2, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7254));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 7,
+                keyValue: "6",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 30, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4721));
+                value: new DateTime(2025, 10, 7, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7255));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 8,
+                keyValue: "7",
                 column: "CreatedDate",
-                value: new DateTime(2025, 10, 13, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4722));
+                value: new DateTime(2025, 10, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7256));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 9,
+                keyValue: "8",
                 column: "CreatedDate",
-                value: new DateTime(2025, 10, 25, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4723));
+                value: new DateTime(2025, 10, 30, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7257));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 10,
+                keyValue: "9",
                 column: "CreatedDate",
-                value: new DateTime(2025, 11, 9, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4724));
+                value: new DateTime(2025, 11, 11, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7258));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 1,
+                keyValue: "1",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 27, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4804));
+                value: new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7356));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 2,
+                keyValue: "10",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 30, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4806));
+                value: new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7368));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 3,
+                keyValue: "11",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 26, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4807));
+                value: new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7370));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 4,
+                keyValue: "12",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 28, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4808));
+                value: new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7371));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 5,
+                keyValue: "13",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 3, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4809));
+                value: new DateTime(2025, 12, 22, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7372));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 6,
+                keyValue: "14",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 25, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4810));
+                value: new DateTime(2025, 12, 25, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7373));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 7,
+                keyValue: "15",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 29, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4811));
+                value: new DateTime(2025, 12, 23, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7374));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 8,
+                keyValue: "2",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 4, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4812));
+                value: new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7358));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 9,
+                keyValue: "3",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 1, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4813));
+                value: new DateTime(2025, 12, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7359));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 10,
+                keyValue: "4",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 27, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4814));
+                value: new DateTime(2025, 12, 15, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7360));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 11,
+                keyValue: "5",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 3, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4815));
+                value: new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7361));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 12,
+                keyValue: "6",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 30, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4816));
+                value: new DateTime(2025, 12, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7362));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 13,
+                keyValue: "7",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 5, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4817));
+                value: new DateTime(2025, 12, 16, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7363));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 14,
+                keyValue: "8",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 8, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4818));
+                value: new DateTime(2025, 12, 21, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7364));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 15,
+                keyValue: "9",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 6, 3, 58, 57, 383, DateTimeKind.Utc).AddTicks(4819));
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Events_Clans_ClanId",
-                table: "Events",
-                column: "ClanId",
-                principalTable: "Clans",
-                principalColumn: "ClanId",
-                onDelete: ReferentialAction.Cascade);
+                value: new DateTime(2025, 12, 18, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7365));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Events_Clans_ClanId",
-                table: "Events");
+            migrationBuilder.AlterColumn<bool>(
+                name: "isClanOwner",
+                table: "AspNetUsers",
+                type: "bit",
+                nullable: false,
+                defaultValue: false,
+                oldClrType: typeof(bool),
+                oldType: "bit",
+                oldNullable: true);
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 1,
+                keyValue: "1",
                 column: "CreatedDate",
-                value: new DateTime(2025, 7, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9461));
+                value: new DateTime(2025, 8, 13, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7298));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 2,
+                keyValue: "10",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 18, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9465));
+                value: new DateTime(2025, 11, 26, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7313));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 3,
+                keyValue: "2",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 26, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9466));
+                value: new DateTime(2025, 9, 4, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7304));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 4,
+                keyValue: "3",
                 column: "CreatedDate",
-                value: new DateTime(2025, 8, 31, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9467));
+                value: new DateTime(2025, 9, 12, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7306));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 5,
+                keyValue: "4",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 15, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9468));
+                value: new DateTime(2025, 9, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7307));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 6,
+                keyValue: "5",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 20, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9469));
+                value: new DateTime(2025, 10, 2, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7308));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 7,
+                keyValue: "6",
                 column: "CreatedDate",
-                value: new DateTime(2025, 9, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9470));
+                value: new DateTime(2025, 10, 7, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7309));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 8,
+                keyValue: "7",
                 column: "CreatedDate",
-                value: new DateTime(2025, 10, 13, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9471));
+                value: new DateTime(2025, 10, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7310));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 9,
+                keyValue: "8",
                 column: "CreatedDate",
-                value: new DateTime(2025, 10, 25, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9472));
+                value: new DateTime(2025, 10, 30, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7311));
 
             migrationBuilder.UpdateData(
                 table: "Clans",
                 keyColumn: "ClanId",
-                keyValue: 10,
+                keyValue: "9",
                 column: "CreatedDate",
-                value: new DateTime(2025, 11, 9, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9473));
+                value: new DateTime(2025, 11, 11, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7312));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 1,
+                keyValue: "1",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9786));
+                value: new DateTime(2025, 12, 14, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7412));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 2,
+                keyValue: "10",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9789));
+                value: new DateTime(2025, 12, 14, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7422));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 3,
+                keyValue: "11",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 26, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9790));
+                value: new DateTime(2025, 12, 20, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7423));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 4,
+                keyValue: "12",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 28, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9792));
+                value: new DateTime(2025, 12, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7424));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 5,
+                keyValue: "13",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 3, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9793));
+                value: new DateTime(2025, 12, 22, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7425));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 6,
+                keyValue: "14",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 25, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9794));
+                value: new DateTime(2025, 12, 25, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7426));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 7,
+                keyValue: "15",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 29, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9795));
+                value: new DateTime(2025, 12, 23, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7427));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 8,
+                keyValue: "2",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 4, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9796));
+                value: new DateTime(2025, 12, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7414));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 9,
+                keyValue: "3",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 1, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9797));
+                value: new DateTime(2025, 12, 13, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7415));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 10,
+                keyValue: "4",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 27, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9798));
+                value: new DateTime(2025, 12, 15, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7416));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 11,
+                keyValue: "5",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 3, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9799));
+                value: new DateTime(2025, 12, 20, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7417));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 12,
+                keyValue: "6",
                 column: "EventDate",
-                value: new DateTime(2025, 11, 30, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9800));
+                value: new DateTime(2025, 12, 12, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7418));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 13,
+                keyValue: "7",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 5, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9801));
+                value: new DateTime(2025, 12, 16, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7419));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 14,
+                keyValue: "8",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 8, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9802));
+                value: new DateTime(2025, 12, 21, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7420));
 
             migrationBuilder.UpdateData(
                 table: "Events",
                 keyColumn: "EventId",
-                keyValue: 15,
+                keyValue: "9",
                 column: "EventDate",
-                value: new DateTime(2025, 12, 6, 2, 8, 36, 106, DateTimeKind.Utc).AddTicks(9803));
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Events_Clans_ClanId",
-                table: "Events",
-                column: "ClanId",
-                principalTable: "Clans",
-                principalColumn: "ClanId",
-                onDelete: ReferentialAction.Restrict);
+                value: new DateTime(2025, 12, 18, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7421));
         }
     }
 }

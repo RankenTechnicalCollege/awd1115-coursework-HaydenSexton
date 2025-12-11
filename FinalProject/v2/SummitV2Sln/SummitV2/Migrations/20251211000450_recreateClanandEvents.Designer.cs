@@ -12,8 +12,8 @@ using SummitV2.Data;
 namespace SummitV2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251208000055_UpdateIdentityUserToApplicationUser")]
-    partial class UpdateIdentityUserToApplicationUser
+    [Migration("20251211000450_recreateClanandEvents")]
+    partial class recreateClanandEvents
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,8 @@ namespace SummitV2.Migrations
 
             modelBuilder.Entity("Clan", b =>
                 {
-                    b.Property<int>("ClanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClanId"));
+                    b.Property<string>("ClanId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -57,81 +54,81 @@ namespace SummitV2.Migrations
                     b.HasData(
                         new
                         {
-                            ClanId = 1,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 8, 10, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8809),
+                            ClanId = "1",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 8, 13, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7298),
                             Description = "Veteran Guardians specializing in endgame PVE content.",
                             Name = "Astral Vanguard"
                         },
                         new
                         {
-                            ClanId = 2,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 1, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8815),
+                            ClanId = "2",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 4, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7304),
                             Description = "Competitive PVP players who love Trials and Iron Banner.",
                             Name = "Iron Wolves"
                         },
                         new
                         {
-                            ClanId = 3,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 9, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8817),
+                            ClanId = "3",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 12, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7306),
                             Description = "Late-night Guardians focusing on Gambit, Dungeons, and seasonal grinds.",
                             Name = "Shadow Syndicate"
                         },
                         new
                         {
-                            ClanId = 4,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 14, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8818),
+                            ClanId = "4",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 9, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7307),
                             Description = "New player–friendly clan helping Guardians level up and learn the game.",
                             Name = "Lightbearer Legion"
                         },
                         new
                         {
-                            ClanId = 5,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 9, 29, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8819),
+                            ClanId = "5",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 2, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7308),
                             Description = "Sherpas assisting Guardians with raids, triumphs, and exotic missions.",
                             Name = "The Last City Watch"
                         },
                         new
                         {
-                            ClanId = 6,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 10, 4, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8820),
+                            ClanId = "6",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 7, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7309),
                             Description = "High-end raiding group completing flawless and master raids.",
                             Name = "Vanguard Elite"
                         },
                         new
                         {
-                            ClanId = 7,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 10, 14, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8821),
+                            ClanId = "7",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7310),
                             Description = "Chaotic Gambit lovers who thrive in the fog of war.",
                             Name = "The Drifter’s Crew"
                         },
                         new
                         {
-                            ClanId = 8,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 10, 27, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8821),
+                            ClanId = "8",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 10, 30, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7311),
                             Description = "Solo-focused players that team up for Nightfalls and seasonal missions.",
                             Name = "Eclipse Wardens"
                         },
                         new
                         {
-                            ClanId = 9,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 11, 8, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8822),
+                            ClanId = "9",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 11, 11, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7312),
                             Description = "Relaxed PVE clan that does raids, dungeons, and chill runs.",
                             Name = "Nova Outriders"
                         },
                         new
                         {
-                            ClanId = 10,
-                            CreatedByUserId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
-                            CreatedDate = new DateTime(2025, 11, 23, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8823),
+                            ClanId = "10",
+                            CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            CreatedDate = new DateTime(2025, 11, 26, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7313),
                             Description = "Lore-obsessed Guardians diving deep into every mystery of the Traveler.",
                             Name = "The Infinite Chorus"
                         });
@@ -217,12 +214,10 @@ namespace SummitV2.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -259,12 +254,10 @@ namespace SummitV2.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -281,6 +274,9 @@ namespace SummitV2.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("BungieId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -326,6 +322,12 @@ namespace SummitV2.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<bool>("isClanOwner")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("joinedClanId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -341,14 +343,12 @@ namespace SummitV2.Migrations
 
             modelBuilder.Entity("SummitV2.Models.Event", b =>
                 {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
-
-                    b.Property<int>("ClanId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClanId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -376,137 +376,137 @@ namespace SummitV2.Migrations
                     b.HasData(
                         new
                         {
-                            EventId = 1,
-                            ClanId = 1,
+                            EventId = "1",
+                            ClanId = "1",
                             Description = "Full raid run with optional red border farming.",
-                            EventDate = new DateTime(2025, 12, 11, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8932),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 14, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7412),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Deep Stone Crypt Raid"
                         },
                         new
                         {
-                            EventId = 2,
-                            ClanId = 1,
+                            EventId = "2",
+                            ClanId = "1",
                             Description = "Grandmaster Nightfall — anti-champion mods required.",
-                            EventDate = new DateTime(2025, 12, 14, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8933),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7414),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "GM Nightfall: The Corrupted"
                         },
                         new
                         {
-                            EventId = 3,
-                            ClanId = 2,
+                            EventId = "3",
+                            ClanId = "2",
                             Description = "Casual PvP night. Stack in fireteams for faster matches.",
-                            EventDate = new DateTime(2025, 12, 10, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8934),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 13, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7415),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Iron Banner Clash Night"
                         },
                         new
                         {
-                            EventId = 4,
-                            ClanId = 3,
+                            EventId = "4",
+                            ClanId = "3",
                             Description = "3-hour Gambit session. No rage quitting.",
-                            EventDate = new DateTime(2025, 12, 12, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8936),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 15, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7416),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Gambit Prime Marathon"
                         },
                         new
                         {
-                            EventId = 5,
-                            ClanId = 3,
+                            EventId = "5",
+                            ClanId = "3",
                             Description = "Armor roll farming and Xenophage help.",
-                            EventDate = new DateTime(2025, 12, 17, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8937),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 20, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7417),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Dungeon Farm: Pit of Heresy"
                         },
                         new
                         {
-                            EventId = 6,
-                            ClanId = 4,
+                            EventId = "6",
+                            ClanId = "4",
                             Description = "Helping new Guardians unlock subclasses and find gear.",
-                            EventDate = new DateTime(2025, 12, 9, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8938),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 12, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7418),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "New Light Onboarding Night"
                         },
                         new
                         {
-                            EventId = 7,
-                            ClanId = 5,
+                            EventId = "7",
+                            ClanId = "5",
                             Description = "Challenge rotation and loot optimization.",
-                            EventDate = new DateTime(2025, 12, 13, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8939),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 16, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7419),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "King’s Fall Challenge Mode"
                         },
                         new
                         {
-                            EventId = 8,
-                            ClanId = 6,
+                            EventId = "8",
+                            ClanId = "6",
                             Description = "Master difficulty raid clearing with coordinated builds.",
-                            EventDate = new DateTime(2025, 12, 18, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8940),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 21, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7420),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Root of Nightmares Master Mode"
                         },
                         new
                         {
-                            EventId = 9,
-                            ClanId = 7,
+                            EventId = "9",
+                            ClanId = "7",
                             Description = "Complete seasonal Gambit challenges for resets.",
-                            EventDate = new DateTime(2025, 12, 15, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8941),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 18, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7421),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Gambit Reset Run"
                         },
                         new
                         {
-                            EventId = 10,
-                            ClanId = 8,
+                            EventId = "10",
+                            ClanId = "8",
                             Description = "Power grind via Nightfall rotation runs.",
-                            EventDate = new DateTime(2025, 12, 11, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8942),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 14, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7422),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Weekly Nightfall Marathon"
                         },
                         new
                         {
-                            EventId = 11,
-                            ClanId = 9,
+                            EventId = "11",
+                            ClanId = "9",
                             Description = "Engram farming and seasonal vendor focusing.",
-                            EventDate = new DateTime(2025, 12, 17, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8943),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 20, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7423),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Activity Grind"
                         },
                         new
                         {
-                            EventId = 12,
-                            ClanId = 10,
+                            EventId = "12",
+                            ClanId = "10",
                             Description = "Deep-dive into Witness influence and the Collapse.",
-                            EventDate = new DateTime(2025, 12, 14, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8944),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 17, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7424),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Lore Discussion Night"
                         },
                         new
                         {
-                            EventId = 13,
-                            ClanId = 2,
+                            EventId = "13",
+                            ClanId = "2",
                             Description = "Warm-up scrims and loadout tuning for Trials weekend.",
-                            EventDate = new DateTime(2025, 12, 19, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8945),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 22, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7425),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Trials Warmup"
                         },
                         new
                         {
-                            EventId = 14,
-                            ClanId = 4,
+                            EventId = "14",
+                            ClanId = "4",
                             Description = "Teaching new players how to build subclasses efficiently.",
-                            EventDate = new DateTime(2025, 12, 22, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8946),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 25, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7426),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Subclass Build Workshop"
                         },
                         new
                         {
-                            EventId = 15,
-                            ClanId = 8,
+                            EventId = "15",
+                            ClanId = "8",
                             Description = "Chill playlist grinding for vendor rewards.",
-                            EventDate = new DateTime(2025, 12, 20, 0, 0, 55, 130, DateTimeKind.Utc).AddTicks(8947),
-                            OrganizerId = "17f1e219-9a92-4b7a-85b8-e3f3e2f3b450",
+                            EventDate = new DateTime(2025, 12, 23, 0, 4, 50, 227, DateTimeKind.Utc).AddTicks(7427),
+                            OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Vanguard Ops Playlist Night"
                         });
                 });
@@ -516,8 +516,8 @@ namespace SummitV2.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ClanId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClanId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");
@@ -538,8 +538,8 @@ namespace SummitV2.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Role")
                         .IsRequired()

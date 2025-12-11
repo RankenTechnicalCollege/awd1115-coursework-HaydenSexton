@@ -4,7 +4,7 @@
     {
         // PK
         public string UserId { get; set; }
-        public int ClanId { get; set; }
+        public string ClanId { get; set; }
 
         public string Role { get; set; }
         public DateTime JoinDate { get; set; }

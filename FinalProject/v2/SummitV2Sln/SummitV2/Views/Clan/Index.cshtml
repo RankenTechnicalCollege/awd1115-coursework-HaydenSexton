@@ -1,4 +1,5 @@
-﻿@model PaginatedList<Clan>
+﻿@using SummitV2.Models;
+@model PaginatedList<Clan>
 
 @{
     ViewBag.Title = "Clan List";
@@ -69,9 +70,6 @@
                                     Founded: @clan.CreatedDate.ToString("yyyy-MM-dd")
                                 </small>
 
-                                @{
-                                    // later on validate that user is allowed to delete or edit
-                                }
 
                                 <div class="btn-group d-flex gap-2" role="group">
 
@@ -80,17 +78,18 @@
                                         View
                                     </a>
 
-                                    @*later make it so admin can only see edit and delete*@
+                                    @if (User.Identity.IsAuthenticated && User.Identity.Name == clan.ApplicationUser?.UserName || User.IsInRole("Admin"))
+                                    {
+                                        <a asp-action="Edit" asp-route-id="@clan.ClanId"
+                                           class="btn btn-sm btn-warning shadow-sm">
+                                            Edit
+                                        </a>
 
-                                    <a asp-action="Edit" asp-route-id="@clan.ClanId"
-                                       class="btn btn-sm btn-warning shadow-sm">
-                                        Edit
-                                    </a>
-
-                                    <a asp-action="Delete" asp-route-id="@clan.ClanId"
-                                       class="btn btn-sm btn-danger shadow-sm">
-                                        Delete
-                                    </a>
+                                        <a asp-action="Delete" asp-route-id="@clan.ClanId"
+                                           class="btn btn-sm btn-danger shadow-sm">
+                                            Delete
+                                        </a>
+                                    }
 
                                 </div>
                             </div>

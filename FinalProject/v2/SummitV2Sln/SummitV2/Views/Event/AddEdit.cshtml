@@ -1,8 +1,8 @@
 ﻿@model Event
 
 @{
-    bool isEdit = Model.EventId != 0;
-    ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
+    // bool isEdit = Model.EventId != 0;
+    // ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
 
     var clan = ViewBag.Clan as Clan;
 }
@@ -20,13 +20,13 @@
 
     <form action="/Event/AddEdit" method="post">
 
-        @if (isEdit)
+        @* @if (isEdit)
         {
             <input type="hidden"
                    id="EventId"
                    name="EventId"
                    value="@Model.EventId" />
-        }
+        } *@
 
         <input type="hidden" id="OrganizerId" name="OrganizerId" value="@Model.OrganizerId" />
 
@@ -77,9 +77,9 @@
                     </span>
                 </div>
 
-                <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
+                @* <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
                     @(isEdit ? "Save Changes" : "Create Event")
-                </button>
+                </button> *@
 
                 <a href="/Clan/Details/@Model.ClanId"
                    class="btn btn-outline-light ms-2 shadow-sm">

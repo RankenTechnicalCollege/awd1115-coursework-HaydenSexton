@@ -5,9 +5,9 @@ namespace SummitV2.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
+        public string EventId { get; set; }
 
-        public int ClanId { get; set; }
+        public string ClanId { get; set; }
         public string OrganizerId { get; set; } = string.Empty;
 
         [Required]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class Clan
 {
-    public int ClanId { get; set; }
+    public string ClanId { get; set; }
 
     [Required]
     public string Name { get; set; } = string.Empty;

@@ -20,7 +20,7 @@ namespace SummitV2.Models
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             T entity = await _dbSet.FindAsync(id);
             _dbSet.Remove(entity);
@@ -32,7 +32,7 @@ namespace SummitV2.Models
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id, QueryOptions<T> options)
+        public async Task<T> GetByIdAsync(string id, QueryOptions<T> options)
         {
             IQueryable<T> query = _dbSet;
             if (options.HasWhere)
@@ -50,7 +50,7 @@ namespace SummitV2.Models
 
             var key = _context.Model.FindEntityType(typeof(T)).FindPrimaryKey().Properties.FirstOrDefault();    
             string primaryKeyName = key?.Name;
-            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyName) == id);
+            return await query.FirstOrDefaultAsync(e => EF.Property<string>(e, primaryKeyName) == id);
         }
 
         public async Task UpdateAsync(T entity)

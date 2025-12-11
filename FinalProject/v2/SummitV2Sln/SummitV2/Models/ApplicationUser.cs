@@ -5,6 +5,9 @@ namespace SummitV2.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public bool? isClanOwner { get; set; } = false;
+        public string? joinedClanId { get; set; } = null!;
+
         // external api id
         public string? BungieId { get; set; }
 
