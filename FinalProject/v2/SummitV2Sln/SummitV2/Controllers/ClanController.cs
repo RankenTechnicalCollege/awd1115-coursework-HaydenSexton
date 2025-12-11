@@ -64,6 +64,8 @@ namespace SummitV2.Controllers
                  .Any(uc => uc.ClanId == clan.ClanId && uc.Role == "ClanMod")
                      && currentUser?.joinedClanId == clan.ClanId;
             ViewBag.CanJoin = currentUser != null && string.IsNullOrEmpty(currentUser.joinedClanId);
+            ViewBag.IsOwner = currentUser?.joinedClanId == clan.ClanId
+                  && currentUser.UserClans.Any(uc => uc.ClanId == clan.ClanId && uc.Role == "ClanOwner");
 
             return View(clan);
         }
@@ -81,16 +83,30 @@ namespace SummitV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description")] Clan clan)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var currentUser = await context.Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (currentUser == null)
+                return Unauthorized();
+
+            // cant make a clan if your in one
+            if (!string.IsNullOrEmpty(currentUser.joinedClanId))
+            {
+                TempData["Error"] = "You are already a member of a clan and cannot create a new one.";
+                return RedirectToAction("Index");
+            }
+
             if (ModelState.IsValid)
             {
                 clan.ClanId = Guid.NewGuid().ToString();
-
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 clan.CreatedByUserId = userId;
                 clan.CreatedDate = DateTime.UtcNow;
 
                 await clans.AddAsync(clan);
 
+                // makes them clan owner
                 var userClan = new UserClan
                 {
                     ClanId = clan.ClanId,
@@ -100,14 +116,19 @@ namespace SummitV2.Controllers
                 };
 
                 context.UserClans.Add(userClan);
+
+                // joins user to the clan
+                currentUser.joinedClanId = clan.ClanId;
+
                 await context.SaveChangesAsync();
 
-                TempData["Message"] = $"Clan '{clan.Name}' was created.";
+                TempData["Message"] = $"Clan '{clan.Name}' was created and you have joined it.";
                 return RedirectToAction("Index");
             }
 
             return View(clan);
         }
+
 
         [HttpGet]
         [Authorize]

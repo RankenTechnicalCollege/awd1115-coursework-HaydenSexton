@@ -40,19 +40,22 @@
                         Log in to Join
                     </a>
                 }
-                else if (ViewBag.IsMember)
+                else if (!(ViewBag.IsOwner ?? false))
                 {
-                    <form asp-controller="Clan" asp-action="Leave" method="post">
-                        <input type="hidden" name="clanId" value="@Model.ClanId" />
-                        <button class="btn btn-danger">Leave Clan</button>
-                    </form>
-                }
-                else if (ViewBag.CanJoin)
-                {
-                    <form asp-controller="Clan" asp-action="Join" method="post">
-                        <input type="hidden" name="clanId" value="@Model.ClanId" />
-                        <button class="btn btn-success">Join Clan</button>
-                    </form>
+                    if (ViewBag.IsMember)
+                    {
+                        <form asp-controller="Clan" asp-action="Leave" method="post">
+                            <input type="hidden" name="clanId" value="@Model.ClanId" />
+                            <button class="btn btn-danger">Leave Clan</button>
+                        </form>
+                    }
+                    else if (ViewBag.CanJoin)
+                    {
+                        <form asp-controller="Clan" asp-action="Join" method="post">
+                            <input type="hidden" name="clanId" value="@Model.ClanId" />
+                            <button class="btn btn-success">Join Clan</button>
+                        </form>
+                    }
                 }
 
             </div>
