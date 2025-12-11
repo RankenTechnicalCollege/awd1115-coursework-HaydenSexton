@@ -10,9 +10,9 @@
         Are you sure you want to delete @Model.Name ?
     </h1>
 
-    <form asp-action="Delete" method="post" class="card bg-black border-danger shadow p-4">
+    <form asp-action="DeleteConf" method="post" class="card bg-black border-danger shadow p-4">
 
-        <input type="hidden" asp-for="ClanId" />
+        <input type="hidden" name="id" asp-for="ClanId" />
 
         <div class="mb-3">
             <input type="submit" value="Delete" class="btn btn-danger fw-bold px-4" />

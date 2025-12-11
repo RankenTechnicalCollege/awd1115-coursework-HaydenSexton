@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="~/SummitV2.styles.css" asp-append-version="true" />
 
     @RenderSection("HeadContent", required: false)
+
+
+
 </head>
 <body class="bg-dark text-light">
 
@@ -39,12 +42,21 @@
                                 <a class="nav-link text-info fw-semibold" asp-area="Admin" asp-controller="User" asp-action="Index">Manage Users</a>
                             </li>
                         }
-                        @if (User.IsInRole("Clan Owner"))
+                        @if (User.IsInRole("ClanOwner"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="" asp-action="" asp-route-id="">My Clan</a> @*Create route to own user clan*@
+                                <form asp-controller="Clan"
+                                      asp-action="MyClan"
+                                      method="post"
+                                      class="nav-link text-info fw-semibold">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link btn btn-link text-info fw-semibold p-0">
+                                        My Clan
+                                    </button>
+                                </form>
                             </li>
                         }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

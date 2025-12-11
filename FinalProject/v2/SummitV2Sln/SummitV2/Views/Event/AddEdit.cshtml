@@ -1,93 +1,55 @@
 ﻿@model Event
-
 @{
-    // bool isEdit = Model.EventId != 0;
-    // ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
-
+    bool isEdit = !string.IsNullOrEmpty(Model.EventId);
+    ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
     var clan = ViewBag.Clan as Clan;
 }
 
 <div class="container mt-4 text-light">
-
-    <h2 class="mb-4 fw-bold text-info text-uppercase" style="letter-spacing:2px;">
-        @ViewData["Title"]
-    </h2>
+    <h2 class="mb-4 fw-bold text-info text-uppercase">@ViewData["Title"]</h2>
 
     <div class="alert alert-dark border-info text-info shadow-sm mb-4 bg-black">
         <strong>Clan:</strong> <span class="text-light">@clan?.Name</span>
         <span class="text-muted">(@clan?.Description)</span>
     </div>
 
-    <form action="/Event/AddEdit" method="post">
-
-        @* @if (isEdit)
-        {
-            <input type="hidden"
-                   id="EventId"
-                   name="EventId"
-                   value="@Model.EventId" />
-        } *@
-
-        <input type="hidden" id="OrganizerId" name="OrganizerId" value="@Model.OrganizerId" />
-
-        <input type="hidden" id="ClanId" name="ClanId" value="@Model.ClanId" />
+    <form asp-controller="Event" asp-action="AddEdit" asp-route-clanId="@Model.ClanId" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="EventId" />
+        <input type="hidden" asp-for="ClanId" />
+        <input type="hidden" asp-for="OrganizerId" />
 
         <div class="card bg-secondary border-info shadow-lg">
             <div class="card-body">
 
                 <div class="mb-3">
-                    <label for="Title" class="form-label text-info fw-bold">Title</label>
-                    <input type="text"
-                           id="Title"
-                           name="Title"
-                           class="form-control bg-dark text-light border-info shadow-sm"
-                           required
-                           value="@Model.Title" />
-
-                    <span class="text-danger">
-                        @Html.ValidationMessage("Title")
-                    </span>
+                    <label asp-for="Title" class="form-label text-info fw-bold"></label>
+                    <input asp-for="Title" class="form-control bg-dark text-light border-info shadow-sm" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="Description" class="form-label text-info fw-bold">Description</label>
-                    <textarea id="Description"
-                              name="Description"
-                              rows="4"
-                              class="form-control bg-dark text-light border-info shadow-sm"
-                              required>@Model.Description</textarea>
-
-                    <span class="text-danger">
-                        @Html.ValidationMessage("Description")
-                    </span>
+                    <label asp-for="Description" class="form-label text-info fw-bold"></label>
+                    <textarea asp-for="Description" rows="4" class="form-control bg-dark text-light border-info shadow-sm" required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label for="EventDate" class="form-label text-info fw-bold">Event Date</label>
-
-                    <input type="datetime-local"
-                           id="EventDate"
-                           name="EventDate"
+                    <label asp-for="EventDate" class="form-label text-info fw-bold"></label>
+                    <input asp-for="EventDate" type="datetime-local"
                            class="form-control bg-dark text-light border-info shadow-sm"
-                           required
-                           value="@(Model.EventDate != default ? Model.EventDate.ToString("yyyy-MM-ddTHH:mm") : "")" />
-
-                    <span class="text-danger">
-                        @Html.ValidationMessage("EventDate")
-                    </span>
+                           value="@(Model.EventDate != default ? Model.EventDate.ToString("yyyy-MM-ddTHH:mm") : "")" required />
+                    <span asp-validation-for="EventDate" class="text-danger"></span>
                 </div>
 
-                @* <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
+                <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
                     @(isEdit ? "Save Changes" : "Create Event")
-                </button> *@
+                </button>
 
-                <a href="/Clan/Details/@Model.ClanId"
-                   class="btn btn-outline-light ms-2 shadow-sm">
-                    Cancel
-                </a>
+                <a asp-controller="Clan" asp-action="Details" asp-route-id="@Model.ClanId"
+                   class="btn btn-outline-light ms-2 shadow-sm">Cancel</a>
 
             </div>
         </div>
-
     </form>
 </div>
