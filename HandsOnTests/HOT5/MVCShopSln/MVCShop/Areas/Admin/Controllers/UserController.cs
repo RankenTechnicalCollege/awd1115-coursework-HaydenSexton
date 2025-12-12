@@ -89,9 +89,9 @@ namespace MVCShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(string rolename)
+        public async Task<IActionResult> CreateRole(string roleName)
         {
-            await roleManager.CreateAsync(new IdentityRole(rolename));
+            await roleManager.CreateAsync(new IdentityRole(roleName));
 
             return RedirectToAction("Index");
         }

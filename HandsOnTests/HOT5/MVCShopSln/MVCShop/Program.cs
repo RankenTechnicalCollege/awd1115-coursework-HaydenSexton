@@ -15,7 +15,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.SignIn.RequireConfirmedAccount = false;
 })
 .AddEntityFrameworkStores<ShopContext>()
-.AddRoles<IdentityRole>()
 .AddDefaultUI()
 .AddDefaultTokenProviders();
 
@@ -63,8 +62,14 @@ using (var scope = scopeFactory.CreateScope())
 }
 
 app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}/{slug?}"
+    name: "areas_with_id",
+    pattern: "{area:exists}/{controller}/{action}/{id?}"
+);
+
+app.MapControllerRoute(
+    name: "adminproducts_with_slug",
+    pattern: "Admin/AdminProducts/{action}/{slug}",
+    defaults: new { area = "Admin", controller = "AdminProducts" }
 );
 
 app.MapControllerRoute(
