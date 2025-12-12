@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SummitV2.Data;
@@ -12,11 +13,15 @@ namespace SummitV2.Controllers
     {
         private Repository<Clan> clans;
         private ApplicationDbContext context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
 
-        public ClanController(ApplicationDbContext context)
+        public ClanController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             this.context = context;
             clans = new Repository<Clan>(context);
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IActionResult> Index(string searchString, int? pageNumber)
@@ -70,6 +75,26 @@ namespace SummitV2.Controllers
             return View(clan);
         }
 
+        [HttpPost]
+        [Authorize(Roles = "ClanOwner")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MyClan()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var currentUser = await context.Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (currentUser == null || string.IsNullOrEmpty(currentUser.joinedClanId))
+            {
+                TempData["Message"] = "You are not currently a member of a clan.";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Details", new { id = currentUser.joinedClanId });
+        }
+
+
         [HttpGet]
         [Authorize]
         public IActionResult Create()
@@ -83,6 +108,7 @@ namespace SummitV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description")] Clan clan)
         {
+            clan.ClanId = Guid.NewGuid().ToString();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var currentUser = await context.Users
@@ -94,7 +120,7 @@ namespace SummitV2.Controllers
             // cant make a clan if your in one
             if (!string.IsNullOrEmpty(currentUser.joinedClanId))
             {
-                TempData["Error"] = "You are already a member of a clan and cannot create a new one.";
+                TempData["Message"] = "You are already a member of a clan and cannot create a new one.";
                 return RedirectToAction("Index");
             }
 
@@ -117,12 +143,21 @@ namespace SummitV2.Controllers
 
                 context.UserClans.Add(userClan);
 
+                HttpContext.Response.Cookies.Append("clanId", clan.ClanId);
+
                 // joins user to the clan
                 currentUser.joinedClanId = clan.ClanId;
 
+                if (!await _roleManager.RoleExistsAsync("ClanOwner"))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("ClanOwner"));
+                }
+
+                await _userManager.AddToRoleAsync(currentUser, "ClanOwner");
+
                 await context.SaveChangesAsync();
 
-                TempData["Message"] = $"Clan '{clan.Name}' was created and you have joined it.";
+                TempData["Message"] = $"Clan '{clan.Name}' was created and you are now the Clan Owner.";
                 return RedirectToAction("Index");
             }
 
@@ -134,33 +169,42 @@ namespace SummitV2.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
-            return View(await clans.GetByIdAsync(id,
-                new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" }));
+            var clan = await clans.GetByIdAsync(id,
+                new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
+
+            if (clan == null)
+                return NotFound();
+
+            return View(clan);
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteConf(string id)
         {
             var clan = await context.Clans
                 .Include(c => c.UserClans)
                     .ThenInclude(uc => uc.ApplicationUser)
-                .FirstOrDefaultAsync(c => c.ClanId == id.ToString());
+                .FirstOrDefaultAsync(c => c.ClanId == id);
 
             if (clan == null)
                 return NotFound();
 
+            // remove events
             var eventsToRemove = context.Events.Where(e => e.ClanId == clan.ClanId);
             context.Events.RemoveRange(eventsToRemove);
 
+            // remove users from the clan
             foreach (var userClan in clan.UserClans.ToList())
             {
                 if (userClan.Role == "ClanOwner")
                 {
                     var user = userClan.ApplicationUser;
                     user.isClanOwner = false;
-                    user.joinedClanId = null; 
+                    user.joinedClanId = null;
+
+                    await _userManager.RemoveFromRoleAsync(user, "ClanOwner");
                 }
 
                 context.UserClans.Remove(userClan);
@@ -170,9 +214,12 @@ namespace SummitV2.Controllers
 
             await clans.DeleteAsync(clan.ClanId);
 
+            HttpContext.Response.Cookies.Delete("clanId");
+
             TempData["Message"] = $"Clan '{clan.Name}' was deleted.";
             return RedirectToAction("Index");
         }
+
 
 
 

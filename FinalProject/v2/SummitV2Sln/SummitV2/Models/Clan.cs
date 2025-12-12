@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class Clan
 {
+    [ValidateNever]
     public string ClanId { get; set; }
 
     [Required]

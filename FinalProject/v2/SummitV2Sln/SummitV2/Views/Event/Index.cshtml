@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Event>
+﻿@model PaginatedList<Event>
 
 @{
     ViewData["Title"] = "All Events (Admin)";
@@ -120,5 +120,36 @@
        class="btn btn-outline-light mt-3 shadow-sm">
         Back to Home
     </a>
+
+    @{
+        // page controls
+    }
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <div class="d-flex justify-content-center" style="padding-top: 5em;">
+        <a asp-area="Event"
+           asp-controller="Event"
+           asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           class="btn btn-outline-light @prevDisabled">
+            Previous
+        </a>
+
+        <div class="btn text-light" style="cursor: default;">
+            Page @Model.PageIndex of @Model.TotalPages
+        </div>
+
+        <a asp-area="Event"
+           asp-controller="Event"
+           asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           class="btn btn-outline-light @nextDisabled">
+            Next
+        </a>
+    </div>
 
 </div>

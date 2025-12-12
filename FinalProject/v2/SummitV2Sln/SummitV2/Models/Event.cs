@@ -5,6 +5,7 @@ namespace SummitV2.Models
 {
     public class Event
     {
+        [ValidateNever]
         public string EventId { get; set; }
 
         public string ClanId { get; set; }
