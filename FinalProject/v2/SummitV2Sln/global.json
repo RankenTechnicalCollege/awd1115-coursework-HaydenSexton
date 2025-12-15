@@ -1,0 +1,9 @@
+﻿{
+  "sdk": {
+    "version": "9.0.307",
+    "rollForward": "disable"
+  },
+  "tools": {
+    "dotnet-ef": "9.0.11" // Explicitly specify EF tool version
+  }
+}
