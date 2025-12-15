@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SummitV2.Migrations
 {
     /// <inheritdoc />
-    public partial class RedoDB : Migration
+    public partial class fixCalls : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +32,7 @@ namespace SummitV2.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    isClanOwner = table.Column<bool>(type: "bit", nullable: false),
+                    isClanOwner = table.Column<bool>(type: "bit", nullable: true),
                     joinedClanId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BungieId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -166,7 +168,7 @@ namespace SummitV2.Migrations
                     ClanId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -257,6 +259,60 @@ namespace SummitV2.Migrations
                         principalTable: "Events",
                         principalColumn: "EventId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "76226e72-f30f-4c48-a579-cd638319f7b0", "83f95054-5763-49d8-a694-5ef4cb046324", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "BungieId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "isClanOwner", "joinedClanId" },
+                values: new object[] { "4a34051d-2930-45cd-b424-ae708724e5fb", 0, "15225971", "3a5b8d9e-1f2a-4c7d-9e3b-6f8a2c4d5e7f", "sparrow@gmail.com", true, true, null, "SPARROW@GMAIL.COM", "SPARROW", null, null, false, "7c28cc3e-7d17-4f57-b6b2-9d8c1b4e5a6f", false, "Sparrow", true, null });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "76226e72-f30f-4c48-a579-cd638319f7b0", "4a34051d-2930-45cd-b424-ae708724e5fb" });
+
+            migrationBuilder.InsertData(
+                table: "Clans",
+                columns: new[] { "ClanId", "CreatedByUserId", "CreatedDate", "Description", "Name" },
+                values: new object[,]
+                {
+                    { "1", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Veteran Guardians specializing in endgame PVE content.", "Astral Vanguard" },
+                    { "10", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lore-obsessed Guardians diving deep into every mystery of the Traveler.", "The Infinite Chorus" },
+                    { "2", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Competitive PVP players who love Trials and Iron Banner.", "Iron Wolves" },
+                    { "3", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Late-night Guardians focusing on Gambit, Dungeons, and seasonal grinds.", "Shadow Syndicate" },
+                    { "4", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "New player–friendly clan helping Guardians level up and learn the game.", "Lightbearer Legion" },
+                    { "5", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sherpas assisting Guardians with raids, triumphs, and exotic missions.", "The Last City Watch" },
+                    { "6", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "High-end raiding group completing flawless and master raids.", "Vanguard Elite" },
+                    { "7", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Chaotic Gambit lovers who thrive in the fog of war.", "The Drifter's Crew" },
+                    { "8", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Solo-focused players that team up for Nightfalls and seasonal missions.", "Eclipse Wardens" },
+                    { "9", "4a34051d-2930-45cd-b424-ae708724e5fb", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Relaxed PVE clan that does raids, dungeons, and chill runs.", "Nova Outriders" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "EventId", "ClanId", "Description", "EventDate", "OrganizerId", "Title" },
+                values: new object[,]
+                {
+                    { "1", "1", "Full raid run with optional red border farming.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Deep Stone Crypt Raid" },
+                    { "10", "8", "Power grind via Nightfall rotation runs.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Weekly Nightfall Marathon" },
+                    { "11", "9", "Engram farming and seasonal vendor focusing.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Seasonal Activity Grind" },
+                    { "12", "10", "Deep-dive into Witness influence and the Collapse.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Lore Discussion Night" },
+                    { "13", "2", "Warm-up scrims and loadout tuning for Trials weekend.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Trials Warmup" },
+                    { "14", "4", "Teaching new players how to build subclasses efficiently.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Subclass Build Workshop" },
+                    { "15", "8", "Chill playlist grinding for vendor rewards.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Vanguard Ops Playlist Night" },
+                    { "2", "1", "Grandmaster Nightfall — anti-champion mods required.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "GM Nightfall: The Corrupted" },
+                    { "3", "2", "Casual PvP night. Stack in fireteams for faster matches.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Iron Banner Clash Night" },
+                    { "4", "3", "3-hour Gambit session. No rage quitting.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Gambit Prime Marathon" },
+                    { "5", "3", "Armor roll farming and Xenophage help.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Dungeon Farm: Pit of Heresy" },
+                    { "6", "4", "Helping new Guardians unlock subclasses and find gear.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "New Light Onboarding Night" },
+                    { "7", "5", "Challenge rotation and loot optimization.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "King's Fall Challenge Mode" },
+                    { "8", "6", "Master difficulty raid clearing with coordinated builds.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Root of Nightmares Master Mode" },
+                    { "9", "7", "Complete seasonal Gambit challenges for resets.", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4a34051d-2930-45cd-b424-ae708724e5fb", "Seasonal Gambit Reset Run" }
                 });
 
             migrationBuilder.CreateIndex(

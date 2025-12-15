@@ -17,7 +17,7 @@ namespace SummitV2.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.22")
+                .HasAnnotation("ProductVersion", "10.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -31,7 +31,7 @@ namespace SummitV2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -53,7 +53,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "1",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 8, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7241),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Veteran Guardians specializing in endgame PVE content.",
                             Name = "Astral Vanguard"
                         },
@@ -61,7 +61,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "2",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 9, 4, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7250),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Competitive PVP players who love Trials and Iron Banner.",
                             Name = "Iron Wolves"
                         },
@@ -69,7 +69,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "3",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 9, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7252),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Late-night Guardians focusing on Gambit, Dungeons, and seasonal grinds.",
                             Name = "Shadow Syndicate"
                         },
@@ -77,7 +77,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "4",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 9, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7253),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "New player–friendly clan helping Guardians level up and learn the game.",
                             Name = "Lightbearer Legion"
                         },
@@ -85,7 +85,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "5",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 10, 2, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7254),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sherpas assisting Guardians with raids, triumphs, and exotic missions.",
                             Name = "The Last City Watch"
                         },
@@ -93,7 +93,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "6",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 10, 7, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7255),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "High-end raiding group completing flawless and master raids.",
                             Name = "Vanguard Elite"
                         },
@@ -101,15 +101,15 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "7",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 10, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7256),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chaotic Gambit lovers who thrive in the fog of war.",
-                            Name = "The Drifter’s Crew"
+                            Name = "The Drifter's Crew"
                         },
                         new
                         {
                             ClanId = "8",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 10, 30, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7257),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Solo-focused players that team up for Nightfalls and seasonal missions.",
                             Name = "Eclipse Wardens"
                         },
@@ -117,7 +117,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "9",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 11, 11, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7258),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Relaxed PVE clan that does raids, dungeons, and chill runs.",
                             Name = "Nova Outriders"
                         },
@@ -125,7 +125,7 @@ namespace SummitV2.Migrations
                         {
                             ClanId = "10",
                             CreatedByUserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            CreatedDate = new DateTime(2025, 11, 26, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7259),
+                            CreatedDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lore-obsessed Guardians diving deep into every mystery of the Traveler.",
                             Name = "The Infinite Chorus"
                         });
@@ -156,6 +156,15 @@ namespace SummitV2.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "76226e72-f30f-4c48-a579-cd638319f7b0",
+                            ConcurrencyStamp = "9f1c6a44-6f7e-4a4d-bc9e-5e9d8b0e7f42",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -243,6 +252,13 @@ namespace SummitV2.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            RoleId = "76226e72-f30f-4c48-a579-cd638319f7b0"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -336,6 +352,25 @@ namespace SummitV2.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "4a34051d-2930-45cd-b424-ae708724e5fb",
+                            AccessFailedCount = 0,
+                            BungieId = "15225971",
+                            ConcurrencyStamp = "3a5b8d9e-1f2a-4c7d-9e3b-6f8a2c4d5e7f",
+                            Email = "sparrow@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "SPARROW@GMAIL.COM",
+                            NormalizedUserName = "SPARROW",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7c28cc3e-7d17-4f57-b6b2-9d8c1b4e5a6f",
+                            TwoFactorEnabled = false,
+                            UserName = "Sparrow",
+                            isClanOwner = true
+                        });
                 });
 
             modelBuilder.Entity("SummitV2.Models.Event", b =>
@@ -376,7 +411,7 @@ namespace SummitV2.Migrations
                             EventId = "1",
                             ClanId = "1",
                             Description = "Full raid run with optional red border farming.",
-                            EventDate = new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7356),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Deep Stone Crypt Raid"
                         },
@@ -385,7 +420,7 @@ namespace SummitV2.Migrations
                             EventId = "2",
                             ClanId = "1",
                             Description = "Grandmaster Nightfall — anti-champion mods required.",
-                            EventDate = new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7358),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "GM Nightfall: The Corrupted"
                         },
@@ -394,7 +429,7 @@ namespace SummitV2.Migrations
                             EventId = "3",
                             ClanId = "2",
                             Description = "Casual PvP night. Stack in fireteams for faster matches.",
-                            EventDate = new DateTime(2025, 12, 13, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7359),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Iron Banner Clash Night"
                         },
@@ -403,7 +438,7 @@ namespace SummitV2.Migrations
                             EventId = "4",
                             ClanId = "3",
                             Description = "3-hour Gambit session. No rage quitting.",
-                            EventDate = new DateTime(2025, 12, 15, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7360),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Gambit Prime Marathon"
                         },
@@ -412,7 +447,7 @@ namespace SummitV2.Migrations
                             EventId = "5",
                             ClanId = "3",
                             Description = "Armor roll farming and Xenophage help.",
-                            EventDate = new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7361),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Dungeon Farm: Pit of Heresy"
                         },
@@ -421,7 +456,7 @@ namespace SummitV2.Migrations
                             EventId = "6",
                             ClanId = "4",
                             Description = "Helping new Guardians unlock subclasses and find gear.",
-                            EventDate = new DateTime(2025, 12, 12, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7362),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "New Light Onboarding Night"
                         },
@@ -430,16 +465,16 @@ namespace SummitV2.Migrations
                             EventId = "7",
                             ClanId = "5",
                             Description = "Challenge rotation and loot optimization.",
-                            EventDate = new DateTime(2025, 12, 16, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7363),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
-                            Title = "King’s Fall Challenge Mode"
+                            Title = "King's Fall Challenge Mode"
                         },
                         new
                         {
                             EventId = "8",
                             ClanId = "6",
                             Description = "Master difficulty raid clearing with coordinated builds.",
-                            EventDate = new DateTime(2025, 12, 21, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7364),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Root of Nightmares Master Mode"
                         },
@@ -448,7 +483,7 @@ namespace SummitV2.Migrations
                             EventId = "9",
                             ClanId = "7",
                             Description = "Complete seasonal Gambit challenges for resets.",
-                            EventDate = new DateTime(2025, 12, 18, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7365),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Gambit Reset Run"
                         },
@@ -457,7 +492,7 @@ namespace SummitV2.Migrations
                             EventId = "10",
                             ClanId = "8",
                             Description = "Power grind via Nightfall rotation runs.",
-                            EventDate = new DateTime(2025, 12, 14, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7368),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Weekly Nightfall Marathon"
                         },
@@ -466,7 +501,7 @@ namespace SummitV2.Migrations
                             EventId = "11",
                             ClanId = "9",
                             Description = "Engram farming and seasonal vendor focusing.",
-                            EventDate = new DateTime(2025, 12, 20, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7370),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Seasonal Activity Grind"
                         },
@@ -475,7 +510,7 @@ namespace SummitV2.Migrations
                             EventId = "12",
                             ClanId = "10",
                             Description = "Deep-dive into Witness influence and the Collapse.",
-                            EventDate = new DateTime(2025, 12, 17, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7371),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Lore Discussion Night"
                         },
@@ -484,7 +519,7 @@ namespace SummitV2.Migrations
                             EventId = "13",
                             ClanId = "2",
                             Description = "Warm-up scrims and loadout tuning for Trials weekend.",
-                            EventDate = new DateTime(2025, 12, 22, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7372),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Trials Warmup"
                         },
@@ -493,7 +528,7 @@ namespace SummitV2.Migrations
                             EventId = "14",
                             ClanId = "4",
                             Description = "Teaching new players how to build subclasses efficiently.",
-                            EventDate = new DateTime(2025, 12, 25, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7373),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Subclass Build Workshop"
                         },
@@ -502,7 +537,7 @@ namespace SummitV2.Migrations
                             EventId = "15",
                             ClanId = "8",
                             Description = "Chill playlist grinding for vendor rewards.",
-                            EventDate = new DateTime(2025, 12, 23, 0, 6, 23, 630, DateTimeKind.Utc).AddTicks(7374),
+                            EventDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrganizerId = "4a34051d-2930-45cd-b424-ae708724e5fb",
                             Title = "Vanguard Ops Playlist Night"
                         });

@@ -51,7 +51,7 @@
                     <label asp-for="EventDate" class="form-label text-info fw-bold"></label>
                     <input asp-for="EventDate" type="datetime-local"
                            class="form-control bg-dark text-light border-info shadow-sm"
-                           value="@(Model.EventDate != default ? Model.EventDate.ToString("yyyy-MM-ddTHH:mm") : "")" required />
+                           value="@(Model.EventDate != default ? Model.EventDate?.ToString("yyyy-MM-ddTHH:mm") : "")" required />
                     <span asp-validation-for="EventDate" class="text-danger"></span>
                 </div>
 

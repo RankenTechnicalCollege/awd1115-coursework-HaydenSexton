@@ -6,6 +6,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project>
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword />
+    <History>True|2025-12-15T05:06:37.9880791Z||;True|2025-12-14T22:57:08.1318849-06:00||;False|2025-12-14T21:59:49.8297630-06:00||;</History>
+    <LastFailureDetails />
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:summitv2dbserver.database.windows.net,1433%3bInitial Catalog=SummitV2_db%3bPersist Security Info=False%3bUser ID=CloudSA6c3750cc%3bPassword=Simplex1!%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="SummitV2.Data.ApplicationDbContext">
+      <Value>Server=tcp:summitv2dbserver.database.windows.net,1433%3bInitial Catalog=SummitV2_db%3bPersist Security Info=False%3bUser ID=CloudSA6c3750cc%3bPassword=Simplex1!%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
 </Project>

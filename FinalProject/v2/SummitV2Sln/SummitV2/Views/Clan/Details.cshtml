@@ -22,7 +22,7 @@
             <h1 class="display-5 fw-bold text-info">@Model.Name</h1>
 
             <p class="text-light mb-1">
-                Founded on: <span class="text-info">@Model.CreatedDate.ToShortDateString()</span>
+                Founded on: <span class="text-info">@Model.CreatedDate?.ToShortDateString()</span>
             </p>
 
             <p class="text-light mb-3">
@@ -136,7 +136,7 @@
                             <div>
                                 <h5 class="mb-1 text-info">@e.Title</h5>
                                 <p class="mb-0 text-muted">
-                                    @e.EventDate.ToString("MMMM dd, yyyy")
+                                    @e.EventDate?.ToString("MMMM dd, yyyy")
                                 </p>
                             </div>
 

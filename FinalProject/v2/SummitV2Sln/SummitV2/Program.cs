@@ -63,11 +63,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
-using (var scope = scopeFactory.CreateScope())
-{
-    await IdentityConfig.CreateAdminUserAsync(scope.ServiceProvider);
-}
+//var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+//using (var scope = scopeFactory.CreateScope())
+//{
+//    await IdentityConfig.CreateAdminUserAsync(scope.ServiceProvider);
+//}
 
 app.UseSession();
 

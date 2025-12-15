@@ -16,7 +16,7 @@ namespace SummitV2.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
 
         // NAV
         [ValidateNever]
