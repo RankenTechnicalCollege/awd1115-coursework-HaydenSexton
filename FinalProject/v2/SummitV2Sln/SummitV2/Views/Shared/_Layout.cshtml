@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentArea = ViewContext.RouteData.Values["area"]?.ToString();
+    var isClanIndex = currentController == "Clan" && currentAction == "Index";
+    var isMyClan = currentController == "Clan" && currentAction == "Details";
+
+    var joinedClanId = Context.Session.GetString("JoinedClanId");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,18 +38,33 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="Clan" asp-action="Index">Clans</a>
+                            <a class="nav-link @(isClanIndex ? "active" : "")"
+                               asp-area=""
+                               asp-controller="Clan"
+                               asp-action="Index">
+                                Clans
+                            </a>
                         </li>
                         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-info fw-semibold" asp-area="" asp-controller="Event" asp-action="Index">Manage Events</a>
+                                <a class="nav-link @(currentController == "Event" ? "active" : "")"
+                                   asp-area=""
+                                   asp-controller="Event"
+                                   asp-action="Index">
+                                    Manage Events
+                                </a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-info fw-semibold" asp-area="Admin" asp-controller="User" asp-action="Index">Manage Users</a>
+                                <a class="nav-link @(currentArea == "Admin" && currentController == "User" ? "active" : "")"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Index">
+                                    Manage Users
+                                </a>
                             </li>
                         }
                         @if (User.IsInRole("ClanOwner"))
@@ -48,9 +73,10 @@
                                 <form asp-controller="Clan"
                                       asp-action="MyClan"
                                       method="post"
-                                      class="nav-link text-info fw-semibold">
+                                      class="d-inline">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="nav-link btn btn-link text-info fw-semibold p-0">
+                                    <button type="submit"
+                                            class="btn btn-link nav-link @(isMyClan ? "active" : "")">
                                         My Clan
                                     </button>
                                 </form>
@@ -58,6 +84,14 @@
                         }
 
                     </ul>
+
+                     @if (!string.IsNullOrEmpty(joinedClanId))
+                     {
+                         <span class="navbar-text text-info">
+                             Welcome Clan Owner!
+                         </span>
+                     }
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>

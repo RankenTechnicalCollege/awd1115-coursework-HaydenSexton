@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SummitV2.Data;
 using SummitV2.Models;
 using SummitV2.Models.ViewModels;
+using SummitV2.Models.DataValidation;
 using System.Security.Claims;
 
 namespace SummitV2.Controllers
@@ -90,6 +91,8 @@ namespace SummitV2.Controllers
                 TempData["Message"] = "You are not currently a member of a clan.";
                 return RedirectToAction("Index");
             }
+
+            HttpContext.Session.SetString("JoinedClanId", currentUser.joinedClanId);
 
             return RedirectToAction("Details", new { id = currentUser.joinedClanId });
         }
@@ -203,6 +206,8 @@ namespace SummitV2.Controllers
                     var user = userClan.ApplicationUser;
                     user.isClanOwner = false;
                     user.joinedClanId = null;
+
+                    HttpContext.Response.Cookies.Delete("JoinedClanId");
 
                     await _userManager.RemoveFromRoleAsync(user, "ClanOwner");
                 }

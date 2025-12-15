@@ -34,7 +34,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/auth/login";
 });
-
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+    options.AppendTrailingSlash = true;
+});
 
 var app = builder.Build();
 

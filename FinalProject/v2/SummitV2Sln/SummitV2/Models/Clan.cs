@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using SummitV2.Models;
+using SummitV2.Models.DataValidation;
 using System.ComponentModel.DataAnnotations;
 
 public class Clan
@@ -8,6 +9,7 @@ public class Clan
     public string ClanId { get; set; }
 
     [Required]
+    [UniqueClanName]
     public string Name { get; set; } = string.Empty;
     [Required]
     public string Description { get; set; } = string.Empty;

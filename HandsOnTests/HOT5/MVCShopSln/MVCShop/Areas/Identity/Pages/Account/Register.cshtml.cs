@@ -70,6 +70,8 @@ namespace MVCShop.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
+
             [Required]
             [Display(Name = "Username")]
             public string UserName { get; set; } = string.Empty;
