@@ -26,12 +26,11 @@ namespace SummitV2.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(string searchString)
         {
-            List<ApplicationUser> users = new List<ApplicationUser>();
+            var users = await userManager.Users.ToListAsync();
 
-            foreach (ApplicationUser user in userManager.Users)
+            foreach (var user in users)
             {
                 user.RoleNames = await userManager.GetRolesAsync(user);
-                users.Add(user);
             }
 
             UserViewModel model = new UserViewModel
