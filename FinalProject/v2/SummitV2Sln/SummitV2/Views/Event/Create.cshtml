@@ -1,7 +1,7 @@
-﻿@model Event
+﻿@using System.Security.Claims
+@model Event
 @{
-    bool isEdit = !string.IsNullOrEmpty(Model.EventId);
-    ViewData["Title"] = isEdit ? "Edit Event" : "Create Event";
+    ViewData["Title"] = "Create Event";
     var clan = ViewBag.Clan as Clan;
 }
 
@@ -13,28 +13,14 @@
         <span class="text-muted">(@clan?.Description)</span>
     </div>
 
-    <!-- SIMPLER: Remove asp-route-clanId -->
-    <form asp-controller="Event" asp-action="AddEdit" method="post">
+    <form asp-controller="Event" asp-action="Create" method="post">
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="EventId" />
-        <input type="hidden" asp-for="ClanId" />
-        <input type="hidden" asp-for="OrganizerId" />
-
-        <!-- Make sure ClanId is ALWAYS in the model -->
-        @if (string.IsNullOrEmpty(Model.ClanId) && ViewBag.Clan != null)
-        {
-            <input type="hidden" asp-for="ClanId" value="@ViewBag.Clan.ClanId" />
-        }
-        else
-        {
-            <input type="hidden" asp-for="ClanId" />
-        }
-
-        <input type="hidden" asp-for="OrganizerId" />
+        <input type="hidden" asp-for="ClanId" value="@clan?.ClanId" />
+        <input type="hidden" asp-for="OrganizerId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
 
         <div class="card bg-secondary border-info shadow-lg">
             <div class="card-body">
-
                 <div class="mb-3">
                     <label asp-for="Title" class="form-label text-info fw-bold"></label>
                     <input asp-for="Title" class="form-control bg-dark text-light border-info shadow-sm" required />
@@ -51,20 +37,16 @@
                     <label asp-for="EventDate" class="form-label text-info fw-bold"></label>
                     <input asp-for="EventDate" type="datetime-local"
                            class="form-control bg-dark text-light border-info shadow-sm"
-                           value="@(Model.EventDate != default ? Model.EventDate.ToString("yyyy-MM-ddTHH:mm") : "")" required />
+                           value="@Model.EventDate.ToString("yyyy-MM-ddTHH:mm")" required />
                     <span asp-validation-for="EventDate" class="text-danger"></span>
                 </div>
 
                 <button type="submit" class="btn btn-info text-dark fw-bold shadow-sm">
-                    @(isEdit ? "Save Changes" : "Create Event")
+                    Create Event
                 </button>
 
-                @if (ViewBag.Clan != null)
-                {
-                    <a asp-controller="Clan" asp-action="Details" asp-route-id="@ViewBag.Clan.ClanId"
-                       class="btn btn-outline-light ms-2 shadow-sm">Cancel</a>
-                }
-
+                <a asp-controller="Clan" asp-action="Details" asp-route-id="@clan?.ClanId"
+                   class="btn btn-outline-light ms-2 shadow-sm">Cancel</a>
             </div>
         </div>
     </form>

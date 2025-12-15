@@ -113,7 +113,7 @@
             @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.ApplicationUser?.UserName || User.IsInRole("Admin, Moderator") || isClanMod)
             {
                 <a asp-controller="Event"
-                   asp-action="AddEdit"
+                   asp-action="Create"
                    asp-route-clanId="@Model.ClanId"
                    class="btn btn-light btn-sm fw-bold text-dark">
                     + Create Event
@@ -170,7 +170,7 @@
         </div>
         <div class="card-body">
             <p class="text-muted">
-                Posts are not implemented yet — this section is reserved for future features such as clan announcements, discussion threads, updates, etc.
+                Posts are not implemented yet - this section is reserved for future features such as clan announcements, discussion threads, updates, etc.
             </p>
         </div>
     </div>

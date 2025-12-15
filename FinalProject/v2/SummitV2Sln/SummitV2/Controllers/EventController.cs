@@ -56,35 +56,20 @@ namespace SummitV2.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> AddEdit(string clanId, string id = null)
+        public async Task<IActionResult> Create(string clanId)
         {
-            ViewBag.Operation = string.IsNullOrEmpty(id) ? "Add" : "Edit";
-            Event ev;
-            Clan clan;
+            var clan = await clans.GetByIdAsync(clanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
+            if (clan == null) return NotFound();
 
-            if (string.IsNullOrEmpty(id))
+            ViewBag.Clan = clan;
+
+            var ev = new Event
             {
-                clan = await clans.GetByIdAsync(clanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
-                if (clan == null) return NotFound();
-
-                ViewBag.Clan = clan;
-
-                ev = new Event
-                {
-                    EventId = Guid.NewGuid().ToString(),
-                    ClanId = clanId,
-                    OrganizerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                    EventDate = DateTime.UtcNow.AddDays(1)
-                };
-            }
-            else
-            {
-                ev = await events.GetByIdAsync(id, new QueryOptions<Event> { Includes = "Clan" });
-                if (ev == null) return NotFound();
-
-                clan = ev.Clan;
-                ViewBag.Clan = clan;
-            }
+                EventId = Guid.NewGuid().ToString(),
+                ClanId = clanId,
+                OrganizerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                EventDate = DateTime.UtcNow.AddDays(1)
+            };
 
             return View(ev);
         }
@@ -92,41 +77,62 @@ namespace SummitV2.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddEdit(string clanId, Event ev)
+        public async Task<IActionResult> Create(Event ev)
         {
-            if (ev != null && string.IsNullOrEmpty(ev.ClanId))
-            {
-                ev.ClanId = clanId;
-            }
-
             if (!ModelState.IsValid)
             {
-                var clan = await clans.GetByIdAsync(clanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
-                if (clan == null) return NotFound();
-                ViewBag.Clan = clan;
-                ViewBag.Operation = string.IsNullOrEmpty(ev.EventId) ? "Add" : "Edit";
+                var clan = await clans.GetByIdAsync(ev.ClanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
+                if (clan != null) ViewBag.Clan = clan;
                 return View(ev);
             }
 
-            if (string.IsNullOrEmpty(ev.EventId))
-            {
-                ev.EventId = Guid.NewGuid().ToString();
-                await events.AddAsync(ev);
-                TempData["Message"] = $"Event \"{ev.Title}\" was created.";
-            }
-            else
-            {
-                var existingEvent = await events.GetByIdAsync(ev.EventId, new QueryOptions<Event>());
-                if (existingEvent == null) return NotFound();
+            ev.EventId = Guid.NewGuid().ToString();
+            ev.OrganizerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                existingEvent.Title = ev.Title;
-                existingEvent.Description = ev.Description;
-                existingEvent.EventDate = ev.EventDate;
-                existingEvent.ClanId = ev.ClanId;
+            await events.AddAsync(ev);
+            TempData["Message"] = $"Event \"{ev.Title}\" was created.";
 
-                await events.UpdateAsync(existingEvent);
-                TempData["Message"] = $"Event \"{ev.Title}\" was updated.";
+            return RedirectToAction("Details", "Clan", new { id = ev.ClanId });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> AddEdit(string? id = null)
+        {
+            if (string.IsNullOrEmpty(id)) return BadRequest("Event ID required");
+
+            ViewBag.Operation = "Edit";
+
+            var ev = await events.GetByIdAsync(id, new QueryOptions<Event> { Includes = "Clan" });
+            if (ev == null) return NotFound();
+
+            ViewBag.Clan = ev.Clan;
+
+            return View("AddEdit", ev);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddEdit(Event ev)
+        {
+            if (!ModelState.IsValid)
+            {
+                var clan = await clans.GetByIdAsync(ev.ClanId, new QueryOptions<Clan> { Includes = "UserClans.ApplicationUser" });
+                if (clan != null) ViewBag.Clan = clan;
+                ViewBag.Operation = "Edit";
+                return View(ev);
             }
+
+            var existingEvent = await events.GetByIdAsync(ev.EventId, new QueryOptions<Event>());
+            if (existingEvent == null) return NotFound();
+
+            existingEvent.Title = ev.Title;
+            existingEvent.Description = ev.Description;
+            existingEvent.EventDate = ev.EventDate;
+
+            await events.UpdateAsync(existingEvent);
+            TempData["Message"] = $"Event \"{ev.Title}\" was updated.";
 
             return RedirectToAction("Details", "Clan", new { id = ev.ClanId });
         }
